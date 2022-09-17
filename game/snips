@@ -1,0 +1,41 @@
+class Engine(object):
+    def __init__(self, current_room, room_map, character_list, main_menu):
+        self.current_room = Library
+        self.room_map = room_map
+        self.character_list = character_list
+        self.main_menu = Menu(
+            "What do you want to do?", [
+             ("Investigate", investigate()),
+             ("Move", move()),
+             ("Present", present())])
+
+    def play(self):
+
+        print(self.current_room.description)
+        print(self.main_menu.display)
+
+        while True:
+            choice = int(input("> "))
+            self.main_menu.callback(choice)
+
+
+        current_room = self.room_map.opening_rom()
+        ending = self.room_map.next_room("The end")
+
+        while current_room != ending:
+            next_room_name = current_room.enter()
+
+            current_room = self.room_map.next_room(next_room_name)
+            current_room.enter()
+        
+        def play(self):
+        print()
+        current_room = self.room_map.opening_rom()
+        ending = self.room_map.next_room("The end")
+
+        while current_room != ending:
+            next_room_name = current_room.enter()
+
+            current_room = self.room_map.next_room(next_room_name)
+            current_room.enter()
+

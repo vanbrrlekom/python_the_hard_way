@@ -12,10 +12,10 @@ def end(why):
     print(why)
     exit(0)
 
-def left_girl():
+def left():
     end("placeholder text for left girl")
 
-def right_girl():
+def right():
     end("placeholder text for right girl")
    
 
