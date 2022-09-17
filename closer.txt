@@ -1,0 +1,1 @@
+This is another trial. This text should describe what happens if the player gets closer without checking the heat sensor. 

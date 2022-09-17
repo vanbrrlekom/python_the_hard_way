@@ -1,0 +1,47 @@
+from collections import namedtuple
+
+game_runs = True
+
+Option = namedtuple("Option", ["label", "callback"])
+
+class Menu(object):
+    
+
+    title = ""
+    options = []
+
+    def __init__(self, title, options):
+        self._title = title
+        
+        for option in options:
+            self.options.append(Option(option[0], option[1]))
+        
+        def header(text):
+            return text
+        
+        def display(self):
+            string = self.header(self._title)
+
+            for i, option in enumerate(self.options):
+                string += f"{i + 1}{option.label}\n"
+            
+            return string
+        
+        def callback(self, i):
+            if i <= len(self._options):
+                return self._options[i - 1].callback
+
+
+main_menu = Menu(
+    "What do you want to do?", [
+        ("Investigate", print("Investigate")),
+        ("Talk", print("Talk")),
+        ("Move", print("move")),
+        ("Present", print("present"))]
+)
+
+print(main_menu.display())
+
+while game_runs: 
+    option = int(input("> "))
+    main_menu.callback(option)()
