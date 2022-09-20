@@ -1,4 +1,5 @@
 from collections import namedtuple
+from dbm.ndbm import library
 from logging import PlaceHolder
 
 Option = namedtuple("Option", ["label", "callback"])
@@ -35,13 +36,28 @@ class Menu:
         if i <= len(self._options):
             return self._options[i - 1].callback
 
-class item_encyclopedia(object):
+class ItemEncyclopedia(object):
     pass
 
 class Item(object):
     def __init__(self, name, description):
         pass
 
+
+
+class Character(object):
+    def __init__(self, name, description, dialogue):
+        self.description = description
+        self.name = name
+        self.dialogue = dialogue
+    
+    def talk():
+        pass
+
+Emma_Atalle = Character(
+    name = "Emma_Atale",
+    description = "Also in the room stands a tall, bored-looking woman. Has she seen the body?",
+    dialogue= "She looks at you dismissively. \n\n \tEmma:\n \tHello?")
 
 class Room(object):
     def __init__(self, opening, description, character, clues):
@@ -52,21 +68,22 @@ class Room(object):
     
 
 Library = Room(
-    opening= "You are in the library. The library has not been described yet.\n \n",
-    description = "The library has many books",
-    character= "Characters in the room",
+    opening= "You are in the library. There is a dead body here.\n The door is locked.  How did this happen?\n \n",
+    description = "The library has many books. \n",
+    character= Emma_Atalle,
     clues = "Clues in the room",
 )
 
 class Engine(object):
-    def __init__(self, start, menu):
-        self.start = start
+    def __init__(self, room, menu):
+        self.room = room
         self.main_menu = menu
     
+
     #Describe the current room
     def play(self):
 
-        print(self.start.description)
+        print(self.room.description + self.room.character.description)
         print(self.main_menu.display())
 
         
@@ -74,14 +91,8 @@ class Engine(object):
         print(self.main_menu.callback(choice))
 
 
-    
-
-class Character(object):
-    pass
-
-
-#class Information(Clue):
-   # pass
+# class Information(Clue):
+#    pass
 
 class RoomMap(object):
     rooms = {
@@ -100,8 +111,8 @@ class RoomMap(object):
 
 main_menu = Menu(
     "What do you want to do?" , [
-    ("Investigate", Library.description),
-    ("Talk", "Talking not yet implemented"),
+    ("Investigate", library.room.description),
+    ("Talk", library.character.dialogue),
     ("Move", "Moving not yet implemented"),
     ("Present", "Presenting not yet implemented")]
 )
