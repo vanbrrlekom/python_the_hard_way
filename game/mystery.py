@@ -4,9 +4,8 @@ from logging import PlaceHolder
 from sys import exit
 
 Option = namedtuple("Option", ["label", "callback"])
+
 class Menu:
-
-
     SEPARATOR = '-'
 
     _title = ''
@@ -15,6 +14,7 @@ class Menu:
     def __init__(self, title, options):
         self._title = title
         self._options = []
+
 
         #Set the options to whatever the nemu is meant to contain
 
@@ -51,29 +51,47 @@ class Item(object):
 # When implementing dialogue, it's important to make it in then
 # format Menu("title", ["question", "answer"], ["back", "placeholder"])
 class Character(object):
-    def __init__(self, name, description, dialogue):
+    def __init__(self, name, description, dialogue, n_dialgue_opts):
         self.description = description
         self.name = name
         self.dialogue = dialogue
+        self.n_dialgue_opts = n_dialgue_opts + 1
+
 
     def talk(self):
-        while True:
-            print(self.dialogue.display())
-            choice = int(input("> "))
-            print(self.dialogue.callback(choice))
+        print(self.dialogue.display())
+        question = int(input("> "))
+        while question < self.n_dialgue_opts:
+            print(self.dialogue.callback(question))
+            question = int(input("> "))
+
+
 
 Emma_Atalle = Character(
-    name = "Emma_Atale",
+    name = "Emma Atalle",
     description = "Also in the room stands a tall, bored-looking woman. Has she seen the body?\n \n",
     dialogue= Menu(
-        "Emma continues to look at you disinterestedly" , [
+        "The woman very pointedly ignores you. \n What do you say?" , [
         ("Who are you", "None of your business"),
         ("What is your name?","Never ask the name a lady her name"),
         ("What is going on?", "You tell me, you're the mureder"),
-        ("Back", "Whelp, feature not implemented, this is going to be an endless loop. Sorry!")]
-    )
+        ("Back", "Back *has* been implemented, so if this message comes up, somethings's gone wrong")]
+    ),
+    n_dialgue_opts = 3
 )
 
+Doctor_Innocente = Character(
+    name = "Vincent Innocent",
+    description = "In the room, you see a fidgeting man in a lab coat and a stethoscope around his neck\n \n",
+    dialogue= Menu(
+        "The man figdets fidgetingly. \n What do you say?" , [
+        ("Who are you", "Uh... I'm the doc"),
+        ("What is your name?","Uh... It's Vincent"),
+        ("What is going on?", "Uh... somone died. What a second. It was you who died! No wait, that's wrong..."),
+        ("Back", "Back *has* been implemented, so if this message comes up, somethings's gone wrong")]
+    ),
+    n_dialgue_opts = 3
+)
 
 class Room(object):
     def __init__(self, opening, description, character, clues):
@@ -82,10 +100,28 @@ class Room(object):
         self.clues = clues
         self.description = description
 
-Library = Room(
+    def describe(self):
+        print(self.description)
+
+Library_opening = Room(
     opening= "\n \nYou are in the library. There is a dead body here.\n\nThe door is locked.  How did this happen?\n \n",
     description = "\nThe library has many books. \n",
     character= Emma_Atalle,
+    clues = "Clues in the room",
+)
+
+Library = Room(
+    opening= "\n \nYou return to library. The dead body is still.\n\nNow the door is unlocked... because you unlocked it.\n \n",
+    description = "\nThe library has many books. \n",
+    character= Emma_Atalle,
+    clues = "Clues in the room",
+)
+
+
+Parlor = Room(
+    opening= "\n \nThis is the parlor?\n \n",
+    description = "\nI don't actually know what a parlor is, but parlorlike things I assume \n",
+    character= Doctor_Innocente,
     clues = "Clues in the room",
 )
 
@@ -94,34 +130,51 @@ class Engine(object):
     def __init__(self, room):
         self.room = room
 
+    #Allows player to choose a new room and move into it. Prints the opening description of that room
+    def move(self):
+        print("choose a room:\n1. Library \n2. Parlor")
+        rooms = {
+            1: Library,
+            2: Parlor
+        }
+        room_choice = int(input("> "))
+        self.room = rooms.get(room_choice)
+        print(self.room.opening + self.room.character.description)
+
+    def present(self):
+        print("presenting not yet implemented")
 
     main_menu = Menu(
         "What do you want to do?" , [
-        ("Investigate", Library.description),
-        ("Talk", Library.character.dialogue),
-        ("Move", "Moving not yet implemented"),
-        ("Present", "Presenting not yet implemented")]
+        ("Investigate", 1),
+        ("Talk", 2),
+        ("Move", 3),
+        ("Present", 4)]
     )
 
-#for some reason, have to make this
+#for some reason, have to make this a function. I don't understand why,
+#but I couldn't get it to work otherwise.
+#I also have no idea why putting the parentheses
+#where I've put them works, but clearly it works, and not doing it like this doesn't work.
+
     def getoptions(self,choice):
 
         options = [
-            self.room.description,
-            self.room.character.talk(),
-            "Moving not yet implemented",
-            "Presenting not yet implemented"
-            ]
-        return options[choice - 1]
+            self.room.describe,
+            self.room.character.talk,
+            self.move,
+            self.present,
+        ]
+        return options[choice - 1]()
 
     #Describe the current room
     def play(self):
-
         print(self.room.opening + self.room.character.description)
-        print(self.main_menu.display())
+        while True:
+            print(self.main_menu.display())
 
-        choice = int(input("> "))
-        print(self.getoptions(choice))
+            choice = int(input("> "))
+            self.getoptions(choice)
 
 
 # class Information(Clue):
@@ -145,5 +198,5 @@ class RoomMap(object):
 
 
 
-game = Engine(Library)
+game = Engine(Library_opening)
 game.play()
