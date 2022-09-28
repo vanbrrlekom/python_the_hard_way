@@ -4,6 +4,7 @@ from logging import PlaceHolder
 from sys import exit
 
 Option = namedtuple("Option", ["label", "callback"])
+Inventory = []
 
 class Menu:
     SEPARATOR = '-'
@@ -70,6 +71,7 @@ class Character(object):
         while question < self.n_dialgue_opts:
             print(self.dialogue.callback(question))
             question = int(input("> "))
+            
 
 
 
@@ -100,11 +102,12 @@ Doctor_Innocente = Character(
 )
 
 class Room(object):
-    def __init__(self, opening, description, character, clues):
+    def __init__(self, opening, description, character, clues, n_clues):
         self.opening = opening
         self.character = character
         self.clues = clues
         self.description = description
+        self.n_clues = n_clues
 
     def describe(self):
         print(self.description)
@@ -120,16 +123,23 @@ class Room(object):
         )
         print(investigation_menu.display())
         investigation_choice = int(input("> "))
-        while investigation_choice <3: #This is what I was talking about earlier. 5‡‡
+        while investigation_choice <= self.n_clues: #This is what I was talking about earlier. 5‡‡
             print(self.clues[investigation_choice-1].description)
+            Inventory.append(self.clues[investigation_choice-1])
+            #remove duplicates from inventory
+            Inventory = [*set(Inventory)]  
             investigation_choice = int(input("> "))
+            
+            
+
 
 
 Library_opening = Room(
     opening= "\n \nYou are in the library. There is a dead body here.\n\nThe door is locked.  How did this happen?\n \n",
     description = "\nThe library has many books. \n",
     character= Emma_Atalle,
-    clues = [Knife, Book]
+    clues = [Knife, Book],
+    n_clues = 2
 )
 
 Library = Room(
@@ -137,6 +147,7 @@ Library = Room(
     description = "\nThe library has many books. \n",
     character= Emma_Atalle,
     clues = "Clues in the room",
+    n_clues= 1
 )
 
 
