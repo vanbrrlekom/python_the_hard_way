@@ -40,12 +40,18 @@ class Menu:
         if i <= len(self._options):
             return self._options[i - 1].callback
 
-class ItemEncyclopedia(object):
-    pass
-
+#Should the name of the item be consistent with what you'd find in the wild? You could have
+#a description in the wild and a description in the inventory. We'll keep that here and 
+#implement later
 class Item(object):
     def __init__(self, name, description):
-        pass
+        self.name = name
+        self.description = description
+
+
+#Some items
+Knife = Item(name = "Bloody knife", description = "A bloody knife. There's an inscription on the hilt. You take take a closer look. The inscryption is... your initials. How strange. Eh, probably it probably doesn't mean anything.")
+Book = Item(name = "A boring book", description = "Just a boring old book")
 
 
 # When implementing dialogue, it's important to make it in then
@@ -103,11 +109,27 @@ class Room(object):
     def describe(self):
         print(self.description)
 
+    ###This code still needs cleaning up a little bit, but in the main it works. Pretty cool!
+    def investigate(self):
+        investigation_menu = Menu(
+            "You look around and the following items stand out to you:", [
+                ("The knife buried in the body", 1),
+                ("A book sitting loose in the shelf", 2),
+                ("Back", 3)
+            ]
+        )
+        print(investigation_menu.display())
+        investigation_choice = int(input("> "))
+        while investigation_choice <3: #This is what I was talking about earlier. 5‡‡
+            print(self.clues[investigation_choice-1].description)
+            investigation_choice = int(input("> "))
+
+
 Library_opening = Room(
     opening= "\n \nYou are in the library. There is a dead body here.\n\nThe door is locked.  How did this happen?\n \n",
     description = "\nThe library has many books. \n",
     character= Emma_Atalle,
-    clues = "Clues in the room",
+    clues = [Knife, Book]
 )
 
 Library = Room(
@@ -130,6 +152,7 @@ class Engine(object):
     def __init__(self, room):
         self.room = room
 
+
     #Allows player to choose a new room and move into it. Prints the opening description of that room
     def move(self):
         print("choose a room:\n1. Library \n2. Parlor")
@@ -141,15 +164,21 @@ class Engine(object):
         self.room = rooms.get(room_choice)
         print(self.room.opening + self.room.character.description)
 
+
+    Inventory : []
+    
+
+
     def present(self):
         print("presenting not yet implemented")
 
     main_menu = Menu(
         "What do you want to do?" , [
-        ("Investigate", 1),
+        ("Look around", 1),
         ("Talk", 2),
         ("Move", 3),
-        ("Present", 4)]
+        ("Present", 4),
+        ("Investigate", 5)]
     )
 
 #for some reason, have to make this a function. I don't understand why,
@@ -164,6 +193,7 @@ class Engine(object):
             self.room.character.talk,
             self.move,
             self.present,
+            self.room.investigate
         ]
         return options[choice - 1]()
 
@@ -194,7 +224,6 @@ class RoomMap(object):
 
     def first_room(self):
         return self.next_room(self.first_room)
-
 
 
 
