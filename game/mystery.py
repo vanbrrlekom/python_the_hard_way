@@ -53,7 +53,8 @@ class Item(object):
 #Some items
 Knife = Item(name = "Bloody knife", description = "A bloody knife. There's an inscription on the hilt. You take take a closer look. The inscryption is... your initials. How strange. Eh, probably it probably doesn't mean anything.")
 Book = Item(name = "A boring book", description = "Just a boring old book")
-
+Incrmination_docs = Item(name = "Incriminating documents", description = "It's a piece of paper. The text says \"it was me I did id\". The signature is... your signature.")
+Library_book = Item(name = "A fun book", description= "this book is way more fun")
 
 # When implementing dialogue, it's important to make it in then
 # format Menu("title", ["question", "answer"], ["back", "placeholder"])
@@ -102,26 +103,22 @@ Doctor_Innocente = Character(
 )
 
 class Room(object):
-    def __init__(self, opening, description, character, clues, n_clues):
+    def __init__(self, opening, description, character, clues, n_clues, investigation_menu):
         self.opening = opening
         self.character = character
         self.clues = clues
+        self.investigation_menu = investigation_menu
         self.description = description
         self.n_clues = n_clues
+
 
     def describe(self):
         print(self.description)
 
     ###This code still needs cleaning up a little bit, but in the main it works. Pretty cool!
     def investigate(self):
-        investigation_menu = Menu(
-            "You look around and the following items stand out to you:", [
-                ("The knife buried in the body", 1),
-                ("A book sitting loose in the shelf", 2),
-                ("Back", 3)
-            ]
-        )
-        print(investigation_menu.display())
+        global Inventory
+        print(self.investigation_menu.display())
         investigation_choice = int(input("> "))
         while investigation_choice <= self.n_clues: #This is what I was talking about earlier. 5‡‡
             print(self.clues[investigation_choice-1].description)
@@ -139,15 +136,28 @@ Library_opening = Room(
     description = "\nThe library has many books. \n",
     character= Emma_Atalle,
     clues = [Knife, Book],
-    n_clues = 2
+    n_clues = 2,
+    investigation_menu = Menu(
+            "You look around and the following items stand out to you:", [
+                ("The knife buried in the body", 1),
+                ("A book sitting loose in the shelf", 2),
+                ("Back", 3)
+            ]
+        )
 )
 
 Library = Room(
     opening= "\n \nYou return to library. The dead body is still.\n\nNow the door is unlocked... because you unlocked it.\n \n",
     description = "\nThe library has many books. \n",
     character= Emma_Atalle,
-    clues = "Clues in the room",
-    n_clues= 1
+    clues = [Library_book],
+    n_clues= 1,
+    investigation_menu = Menu(
+            "You look around and the following items stand out to you:", [
+                ("A book sitting loose in the shelf", 2),
+                ("Back", 3)
+            ]
+        )
 )
 
 
@@ -155,7 +165,14 @@ Parlor = Room(
     opening= "\n \nThis is the parlor?\n \n",
     description = "\nI don't actually know what a parlor is, but parlorlike things I assume \n",
     character= Doctor_Innocente,
-    clues = "Clues in the room",
+    clues = [Incrmination_docs],
+    n_clues = 1,
+    investigation_menu = Menu(
+            "You look around and the following items stand out to you:", [
+                ("A suspicious-looking document sitting on a shelf", 2),
+                ("Back", 3)
+            ]
+        )
 )
 
 class Engine(object):
@@ -176,12 +193,18 @@ class Engine(object):
         print(self.room.opening + self.room.character.description)
 
 
-    Inventory : []
     
 
 
     def present(self):
-        print("presenting not yet implemented")
+        print("\nThe following items are in your inventory:")
+        if Inventory == []:
+            print("\n You have nothing to present!")
+        else:
+            for item in Inventory:
+                print(item.name)
+
+        
 
     main_menu = Menu(
         "What do you want to do?" , [
