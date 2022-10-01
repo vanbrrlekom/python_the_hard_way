@@ -1,6 +1,7 @@
 from collections import namedtuple
 #from dbm.ndbm import library
 from logging import PlaceHolder
+from pickle import TRUE
 from sys import exit
 
 Option = namedtuple("Option", ["label", "callback"])
@@ -45,25 +46,44 @@ class Menu:
 #a description in the wild and a description in the inventory. We'll keep that here and 
 #implement later
 class Item(object):
-    def __init__(self, name, description):
+    def __init__(self, name, description, portable):
         self.name = name
         self.description = description
+        self.portable = portable
 
 
 #Some items
-Knife = Item(name = "Bloody knife", description = "A bloody knife. There's an inscription on the hilt. You take take a closer look. The inscryption is... your initials. How strange. Eh, probably it probably doesn't mean anything.")
-Book = Item(name = "A boring book", description = "Just a boring old book")
-Incrmination_docs = Item(name = "Incriminating documents", description = "It's a piece of paper. The text says \"it was me I did id\". The signature is... your signature.")
-Library_book = Item(name = "A fun book", description= "this book is way more fun")
+Knife = Item(
+    name = "Bloody knife", 
+    description = "A bloody knife. There's an inscription on the hilt. You take take a closer look. The inscryption is... your initials. How strange. Eh, probably it probably doesn't mean anything.",
+    portable= True)
+Book = Item(
+    name = "A boring book", 
+    description = "Just a boring old book",
+    portable = True)
+Incrmination_docs = Item(
+    name = "Incriminating documents", 
+    description = "It's a piece of paper. The text says \"it was me i did it\". The signature is... your signature.",
+    portable= True)
+Library_book = Item(
+    name = "A fun book", 
+    description= "this book is way more fun",
+    portable= True)
 
 # When implementing dialogue, it's important to make it in then
 # format Menu("title", ["question", "answer"], ["back", "placeholder"])
 class Character(object):
-    def __init__(self, name, description, dialogue, n_dialgue_opts):
+    def __init__(
+            self, name, description, dialogue, n_dialgue_opts, key_item, 
+            key_item_dialogue, wrong_item_dialogue
+            ):
         self.description = description
         self.name = name
         self.dialogue = dialogue
         self.n_dialgue_opts = n_dialgue_opts + 1
+        self.key_item = key_item
+        self.key_item_dialogue = key_item_dialogue
+        self.wrong_item_dialogue = wrong_item_dialogue
 
 
     def talk(self):
@@ -72,9 +92,23 @@ class Character(object):
         while question < self.n_dialgue_opts:
             print(self.dialogue.callback(question))
             question = int(input("> "))
+    
+    def present(self):
+        print("What would you like to present?:")
+        #Show all the items the player has picked up
+        if Inventory == []:
+            print("\nWhat a second. There's *nothing* in your inventory!")
+        #Number all the options
+        else:
+            for i in range(len(Inventory)):
+                print(f"{i + 1} " + Inventory[i].name)
+            item_choice = int(input("> "))
+            if Inventory[item_choice - 1] == self.key_item:
+                print(self.key_item_dialogue)
+            else:
+                print(self.wrong_item_dialogue)
+        
             
-
-
 
 Emma_Atalle = Character(
     name = "Emma Atalle",
@@ -86,7 +120,28 @@ Emma_Atalle = Character(
         ("What is going on?", "You tell me, you're the mureder"),
         ("Back", "Back *has* been implemented, so if this message comes up, somethings's gone wrong")]
     ),
-    n_dialgue_opts = 3
+    n_dialgue_opts = 3,
+    key_item = Knife,
+    wrong_item_dialogue= """
+    The woman looks at you with undisguised annoyance.
+   
+    Emma:
+    Oh dear. Please stop waving that around, someone could get hurt.
+
+    """,
+    key_item_dialogue= """
+    The woman raises an eyebrow, looking faintly impressed.
+
+    Emma:
+    Oh my. Looks like you found something important. How industrious of you.
+    Well, come on then, show it here.  Oh it's a knife! Excellent. 
+    You can draw judge a lot about a murderer based on the knives they use.
+    Oh look, the murderer was foolish enough to leave a knife inscribed with
+    something. Hmm... P... C...
+    Wait a minute, these are your initials, aren't they?
+    """
+
+
 )
 
 Doctor_Innocente = Character(
@@ -99,7 +154,16 @@ Doctor_Innocente = Character(
         ("What is going on?", "Uh... somone died. What a second. It was you who died! No wait, that's wrong..."),
         ("Back", "Back *has* been implemented, so if this message comes up, somethings's gone wrong")]
     ),
-    n_dialgue_opts = 3
+    n_dialgue_opts = 3,
+    key_item= Incrmination_docs,
+    key_item_dialogue= """
+    Vincent:
+    Uh... What's that? It looks like a confession. OH, are YOU confessing?
+    """,
+    wrong_item_dialogue= """
+    Vincent:
+    Uh... Why did you show me that?
+    """
 )
 
 class Room(object):
@@ -120,11 +184,14 @@ class Room(object):
         global Inventory
         print(self.investigation_menu.display())
         investigation_choice = int(input("> "))
-        while investigation_choice <= self.n_clues: #This is what I was talking about earlier. 5‡‡
+        while investigation_choice <= self.n_clues: 
             print(self.clues[investigation_choice-1].description)
-            Inventory.append(self.clues[investigation_choice-1])
-            #remove duplicates from inventory
-            Inventory = [*set(Inventory)]  
+
+            if self.clues[investigation_choice-1].portable == True:
+                Inventory.append(self.clues[investigation_choice-1])
+               
+                #remove duplicates from inventory
+                Inventory = [*set(Inventory)]  
             investigation_choice = int(input("> "))
             
             
@@ -163,7 +230,7 @@ Library = Room(
 
 Parlor = Room(
     opening= "\n \nThis is the parlor?\n \n",
-    description = "\nI don't actually know what a parlor is, but parlorlike things I assume \n",
+    description = "\nI don't actually know what a parlor is, but parlorlike things abound, I assume \n",
     character= Doctor_Innocente,
     clues = [Incrmination_docs],
     n_clues = 1,
@@ -183,7 +250,7 @@ class Engine(object):
 
     #Allows player to choose a new room and move into it. Prints the opening description of that room
     def move(self):
-        print("choose a room:\n1. Library \n2. Parlor")
+        print("Choose a room:\n1. Library \n2. Parlor")
         rooms = {
             1: Library,
             2: Parlor
@@ -192,27 +259,26 @@ class Engine(object):
         self.room = rooms.get(room_choice)
         print(self.room.opening + self.room.character.description)
 
-
-    
-
-
-    def present(self):
+    def check_inventory(self):
         print("\nThe following items are in your inventory:")
         if Inventory == []:
-            print("\n You have nothing to present!")
+            print("\nWhat a second. There's *nothing* in your inventory!")
         else:
             for item in Inventory:
                 print(item.name)
-
-        
+    
+    def quit(self):
+        exit(1)
 
     main_menu = Menu(
         "What do you want to do?" , [
         ("Look around", 1),
         ("Talk", 2),
         ("Move", 3),
-        ("Present", 4),
-        ("Investigate", 5)]
+        ("Check inventory", 4),
+        ("Investigate", 5),
+        ("Present", 6),
+        ("Quit", 8)]
     )
 
 #for some reason, have to make this a function. I don't understand why,
@@ -226,8 +292,10 @@ class Engine(object):
             self.room.describe,
             self.room.character.talk,
             self.move,
-            self.present,
-            self.room.investigate
+            self.check_inventory,
+            self.room.investigate,
+            self.room.character.present,
+            self.quit
         ]
         return options[choice - 1]()
 
@@ -237,8 +305,11 @@ class Engine(object):
         while True:
             print(self.main_menu.display())
 
-            choice = int(input("> "))
-            self.getoptions(choice)
+            choice = input("> ")
+            if choice.isnumeric():
+                self.getoptions(int(choice))
+            else:
+                print("Come one. No funny business. Just enter a number.")
 
 
 # class Information(Clue):
