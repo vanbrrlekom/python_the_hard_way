@@ -177,7 +177,9 @@ class Room(object):
 
 
     def describe(self):
-        print(self.description)
+        for line in (self.description):
+            print(line.strip())
+            input("")
 
     ###This code still needs cleaning up a little bit, but in the main it works. Pretty cool!
     def investigate(self):
@@ -199,8 +201,8 @@ class Room(object):
 
 
 Library_opening = Room(
-    opening= "\n \nYou are in the library. There is a dead body here.\n\nThe door is locked.  How did this happen?\n \n",
-    description = "\nThe library has many books. \n",
+    opening= open("library_opening.txt"),
+    description = open("library_description.txt"),
     character= Emma_Atalle,
     clues = [Knife, Book],
     n_clues = 2,
@@ -301,7 +303,11 @@ class Engine(object):
 
     #Describe the current room
     def play(self):
-        print(self.room.opening + self.room.character.description)
+        for line in (self.room.opening):
+            print(line.strip())
+            input("")
+
+        print(self.room.opening.read())
         while True:
             print(self.main_menu.display())
 
