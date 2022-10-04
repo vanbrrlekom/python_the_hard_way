@@ -7,6 +7,13 @@ from sys import exit
 Option = namedtuple("Option", ["label", "callback"])
 Inventory = []
 
+#A convenience fuction to print long bits of text line by line
+def slowprint(x):
+    for line in (x):
+            print(line.strip())
+            input("")
+
+
 class Menu:
     SEPARATOR = '-'
 
@@ -55,8 +62,13 @@ class Item(object):
 #Some items
 Knife = Item(
     name = "Bloody knife", 
-    description = "A bloody knife. There's an inscription on the hilt. You take take a closer look. The inscryption is... your initials. How strange. Eh, probably it probably doesn't mean anything.",
+    description = "A bloody knife. There's an inscription on the hilt. You take take a closer look. The inscryption is... your initials. How strange. Eh, probably it probably doesn't mean anything. You pick it up, you freak.",
     portable= True)
+Letter = Item(
+    name = "Pocket letter",
+    description= open("pocket_letter_description.txt"),
+    portable = True)
+
 Book = Item(
     name = "A boring book", 
     description = "Just a boring old book",
@@ -102,11 +114,15 @@ class Character(object):
         else:
             for i in range(len(Inventory)):
                 print(f"{i + 1} " + Inventory[i].name)
-            item_choice = int(input("> "))
-            if Inventory[item_choice - 1] == self.key_item:
-                print(self.key_item_dialogue)
-            else:
-                print(self.wrong_item_dialogue)
+            item_choice = (input("> "))
+            if item_choice.isnumeric():
+                if Inventory[int(item_choice) - 1] == self.key_item:
+                    slowprint(self.key_item_dialogue)
+                else:
+                    print(self.wrong_item_dialogue)
+            else: 
+                print("You still have to enter a number. The game won't continue until you do. Believe me, I'm a computer, I can wait all day.")
+                input("")
         
             
 
@@ -121,25 +137,13 @@ Emma_Atalle = Character(
         ("Back", "Back *has* been implemented, so if this message comes up, somethings's gone wrong")]
     ),
     n_dialgue_opts = 3,
-    key_item = Knife,
+    key_item = Letter,
     wrong_item_dialogue= """
     The woman looks at you with undisguised annoyance.
-   
-    Emma:
-    Oh dear. Please stop waving that around, someone could get hurt.
+    Emma:Oh dear. Please stop waving that around, someone could get hurt.
 
     """,
-    key_item_dialogue= """
-    The woman raises an eyebrow, looking faintly impressed.
-
-    Emma:
-    Oh my. Looks like you found something important. How industrious of you.
-    Well, come on then, show it here.  Oh it's a knife! Excellent. 
-    You can draw judge a lot about a murderer based on the knives they use.
-    Oh look, the murderer was foolish enough to leave a knife inscribed with
-    something. Hmm... P... C...
-    Wait a minute, these are your initials, aren't they?
-    """
+    key_item_dialogue= open("emma_key_item_dialogue.txt")
 
 
 )
@@ -177,24 +181,30 @@ class Room(object):
 
 
     def describe(self):
-        for line in (self.description):
-            print(line.strip())
-            input("")
+        slowprint(self.description)
 
     ###This code still needs cleaning up a little bit, but in the main it works. Pretty cool!
     def investigate(self):
         global Inventory
         print(self.investigation_menu.display())
-        investigation_choice = int(input("> "))
-        while investigation_choice <= self.n_clues: 
-            print(self.clues[investigation_choice-1].description)
+        investigation_choice = input("> ")
+        #yeah, I know, this has too many nested conditionals. But I couldn't come up with a less
+        #kludgy way to accomplish the game not crashing if the player doesn't enter an integer.
+        if investigation_choice.isnumeric():
+            investigation_choice = int(investigation_choice) #it needs to be an integer
+            while investigation_choice <= self.n_clues: 
+                slowprint(self.clues[investigation_choice-1].description)
 
-            if self.clues[investigation_choice-1].portable == True:
-                Inventory.append(self.clues[investigation_choice-1])
-               
-                #remove duplicates from inventory
-                Inventory = [*set(Inventory)]  
-            investigation_choice = int(input("> "))
+                if self.clues[investigation_choice-1].portable == True:
+                    Inventory.append(self.clues[investigation_choice-1])
+                
+                    #remove duplicates from inventory
+                    Inventory = [*set(Inventory)]  
+                print(self.investigation_menu.display())
+                investigation_choice = int(input("> "))
+        else:
+            print("Yeah, yeah, you tried to see what happens if you enter not a number. Very clever.")
+            input("Return to main menu")
             
             
 
@@ -204,13 +214,14 @@ Library_opening = Room(
     opening= open("library_opening.txt"),
     description = open("library_description.txt"),
     character= Emma_Atalle,
-    clues = [Knife, Book],
-    n_clues = 2,
+    clues = [Knife, Letter, Book],
+    n_clues = 3,
     investigation_menu = Menu(
             "You look around and the following items stand out to you:", [
                 ("The knife buried in the body", 1),
-                ("A book sitting loose in the shelf", 2),
-                ("Back", 3)
+                ("The rest of the body",2),
+                ("A book sitting loose in the shelf", 3),
+                ("Back", 4)
             ]
         )
 )
@@ -303,9 +314,7 @@ class Engine(object):
 
     #Describe the current room
     def play(self):
-        for line in (self.room.opening):
-            print(line.strip())
-            input("")
+        slowprint(self.room.opening)
 
         print(self.room.opening.read())
         while True:
@@ -315,7 +324,8 @@ class Engine(object):
             if choice.isnumeric():
                 self.getoptions(int(choice))
             else:
-                print("Come one. No funny business. Just enter a number.")
+                print("Come on. No funny business. Just enter a number.")
+                input("")
 
 
 # class Information(Clue):

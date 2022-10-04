@@ -1,0 +1,16 @@
+Emma takes the letter.
+She reads it slowly and carefully.
+She looks up at you.
+She looks down at the letter.
+She looks back up at you.
+EMMA: I will admit, this does not looks good for me.
+EMMA: But you have to believe me, I truly was only joking.
+EMMA: Yes, I know I got weirdly specific towards the end there.
+EMMA: But...
+EMMA: That's just how we joke!
+EMMA: And anyway. The library was locked from the inside!
+EMMA: How could I have possibly committed the murder?
+EMMA: And you must admit, things do not look good for you either. 
+EMMA: How about, instead of throwing senseless accusations at each other, we work together?
+EMMA: And by work together, I mean, I'll wait here while you talk to the other guests.
+EMMA: Some of them are shifty as heck.
