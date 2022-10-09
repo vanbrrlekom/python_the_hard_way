@@ -14,6 +14,7 @@ def slowprint(x):
             input("")
 
 
+
 class Menu:
     SEPARATOR = '-'
 
@@ -66,7 +67,7 @@ Knife = Item(
     portable= True)
 Letter = Item(
     name = "Pocket letter",
-    description= open("pocket_letter_description.txt"),
+    description= open("debugging.txt"),#open("pocket_letter_description.txt"),
     portable = True)
 
 Book = Item(
@@ -87,7 +88,7 @@ Library_book = Item(
 class Character(object):
     def __init__(
             self, name, description, dialogue, n_dialgue_opts, key_item, 
-            key_item_dialogue, wrong_item_dialogue
+            key_item_dialogue, wrong_item_dialogue, key_item_outcome
             ):
         self.description = description
         self.name = name
@@ -95,6 +96,7 @@ class Character(object):
         self.n_dialgue_opts = n_dialgue_opts + 1
         self.key_item = key_item
         self.key_item_dialogue = key_item_dialogue
+        self.key_item_outcome = key_item_outcome
         self.wrong_item_dialogue = wrong_item_dialogue
 
 
@@ -105,25 +107,6 @@ class Character(object):
             print(self.dialogue.callback(question))
             question = int(input("> "))
     
-    def present(self):
-        print("What would you like to present?:")
-        #Show all the items the player has picked up
-        if Inventory == []:
-            print("\nWhat a second. There's *nothing* in your inventory!")
-        #Number all the options
-        else:
-            for i in range(len(Inventory)):
-                print(f"{i + 1} " + Inventory[i].name)
-            item_choice = (input("> "))
-            if item_choice.isnumeric():
-                if Inventory[int(item_choice) - 1] == self.key_item:
-                    slowprint(self.key_item_dialogue)
-                else:
-                    print(self.wrong_item_dialogue)
-            else: 
-                print("You still have to enter a number. The game won't continue until you do. Believe me, I'm a computer, I can wait all day.")
-                input("")
-        
             
 
 Emma_Atalle = Character(
@@ -138,13 +121,13 @@ Emma_Atalle = Character(
     ),
     n_dialgue_opts = 3,
     key_item = Letter,
-    wrong_item_dialogue= """
+    wrong_item_dialogue = """
     The woman looks at you with undisguised annoyance.
     Emma:Oh dear. Please stop waving that around, someone could get hurt.
 
     """,
-    key_item_dialogue= open("emma_key_item_dialogue.txt")
-
+    key_item_dialogue = open("debugging.txt"),#open("emma_key_item_dialogue.txt"),
+    key_item_outcome = "Unlock"
 
 )
 
@@ -167,7 +150,8 @@ Doctor_Innocente = Character(
     wrong_item_dialogue= """
     Vincent:
     Uh... Why did you show me that?
-    """
+    """,
+    key_item_outcome= "Unlock"
 )
 
 class Room(object):
@@ -179,6 +163,10 @@ class Room(object):
         self.description = description
         self.n_clues = n_clues
 
+    locked = False
+
+    def turn_lock(self):
+        self.locked = False
 
     def describe(self):
         slowprint(self.description)
@@ -211,7 +199,7 @@ class Room(object):
 
 
 Library_opening = Room(
-    opening= open("library_opening.txt"),
+    opening= open("debugging.txt"), #open("library_opening.txt"),
     description = open("library_description.txt"),
     character= Emma_Atalle,
     clues = [Knife, Letter, Book],
@@ -259,6 +247,7 @@ class Engine(object):
 
     def __init__(self, room):
         self.room = room
+    
 
 
     #Allows player to choose a new room and move into it. Prints the opening description of that room
@@ -280,8 +269,40 @@ class Engine(object):
             for item in Inventory:
                 print(item.name)
     
+    def get_outcomes(self, input):
+        outcomes = {
+            "Unlock": self.room.turn_lock(),
+            "Other": self.move
+            }
+
+        return outcomes.get(input)
+
+    def present(self):
+        print("What would you like to present?:")
+        #Show all the items the player has picked up
+        if Inventory == []:
+            print("\nWhat a second. There's *nothing* in your inventory!")
+        #Number all the options
+        else:
+            for item in range(len(Inventory)):
+                print(f"{item + 1} " + Inventory[item].name) #add a number to options presented to player
+            item_choice = (input("> "))
+            if item_choice.isnumeric():
+                if Inventory[int(item_choice) - 1] == self.room.character.key_item:
+                    slowprint(self.room.character.key_item.description)
+                    self.get_outcomes(self.room.character.key_item_outcome)
+                else:
+                    print(self.wrong_item_dialogue)
+            else: 
+                print("You still have to enter a number. The game won't continue until you do. Believe me, I'm a computer, I can wait all day.")
+                input("")
+    
     def quit(self):
         exit(1)
+
+    def checklock(self):
+        print(self.room.locked)
+    
 
     main_menu = Menu(
         "What do you want to do?" , [
@@ -294,31 +315,57 @@ class Engine(object):
         ("Quit", 8)]
     )
 
+    main_menu_locked = Menu(
+        "What do you want to do?" , [
+        ("Look around", 1),
+        ("Talk", 2),
+        ("Check inventory", 4),
+        ("Investigate", 5),
+        ("Present", 6),
+        ("Quit", 8),
+        ("checklock", 9)]
+    )
+
 #for some reason, have to make this a function. I don't understand why,
 #but I couldn't get it to work otherwise.
 #I also have no idea why putting the parentheses
 #where I've put them works, but clearly it works, and not doing it like this doesn't work.
 
     def getoptions(self,choice):
-
-        options = [
-            self.room.describe,
-            self.room.character.talk,
-            self.move,
-            self.check_inventory,
-            self.room.investigate,
-            self.room.character.present,
-            self.quit
-        ]
+        if self.room.locked:
+            options = [
+                self.room.describe,
+                self.room.character.talk,
+                self.check_inventory,
+                self.room.investigate,
+                self.present,
+                self.quit,
+                self.checklock
+            ]
+        else: 
+             options = [
+                self.room.describe,
+                self.room.character.talk,
+                self.move,
+                self.check_inventory,
+                self.room.investigate,
+                self.present,
+                self.quit
+            ]
         return options[choice - 1]()
+
 
     #Describe the current room
     def play(self):
+        self.room.locked = TRUE
         slowprint(self.room.opening)
 
         print(self.room.opening.read())
         while True:
-            print(self.main_menu.display())
+            if self.room.locked:
+                print(self.main_menu_locked.display())
+            else:
+                print(self.main_menu.display())
 
             choice = input("> ")
             if choice.isnumeric():
