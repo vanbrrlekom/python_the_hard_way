@@ -63,7 +63,7 @@ class Item(object):
 #Some items
 Knife = Item(
     name = "Bloody knife", 
-    description = "A bloody knife. There's an inscription on the hilt. You take take a closer look. The inscryption is... your initials. How strange. Eh, probably it probably doesn't mean anything. You pick it up, you freak.",
+    description =  open("debugging.txt"),#"A bloody knife. There's an inscription on the hilt. You take take a closer look. The inscryption is... your initials. How strange. Eh, probably it probably doesn't mean anything. You pick it up, you freak.",
     portable= True)
 Letter = Item(
     name = "Pocket letter",
@@ -87,12 +87,13 @@ Library_book = Item(
 # format Menu("title", ["question", "answer"], ["back", "placeholder"])
 class Character(object):
     def __init__(
-            self, name, description, dialogue, n_dialgue_opts, key_item, 
+            self, name, description, dialogue, dialogue_opts, n_dialgue_opts, key_item, 
             key_item_dialogue, wrong_item_dialogue, key_item_outcome
             ):
         self.description = description
         self.name = name
         self.dialogue = dialogue
+        self.dialogue_opts = dialogue_opts
         self.n_dialgue_opts = n_dialgue_opts + 1
         self.key_item = key_item
         self.key_item_dialogue = key_item_dialogue
@@ -102,10 +103,11 @@ class Character(object):
 
     def talk(self):
         print(self.dialogue.display())
-        question = int(input("> "))
-        while question < self.n_dialgue_opts:
-            print(self.dialogue.callback(question))
-            question = int(input("> "))
+        choice = int(input("> "))
+        while choice < len(self.dialogue_opts):
+            slowprint(self.dialogue_opts[choice -1])
+            print(self.dialogue.display())
+            choice = int(input("> "))
     
             
 
@@ -113,12 +115,13 @@ Emma_Atalle = Character(
     name = "Emma Atalle",
     description = "Also in the room stands a tall, bored-looking woman. Has she seen the body?\n \n",
     dialogue= Menu(
-        "The woman very pointedly ignores you. \n What do you say?" , [
-        ("Who are you", "None of your business"),
-        ("What is your name?","Never ask the name a lady her name"),
-        ("What is going on?", "You tell me, you're the mureder"),
+        "The woman eyes you very suspicously. You get the sense that maybe she suspects you of something. \n What do you talk about?" , [
+        ("Don't move?", "None of your business"),
+        ("This place","Never ask the name a lady her name"),
+        ("Last night", "You tell me, you're the mureder"),
         ("Back", "Back *has* been implemented, so if this message comes up, somethings's gone wrong")]
     ),
+    dialogue_opts= [open("emma_dialogue1"), open("emma_dialogue2"), open("emma_dialogue3")],
     n_dialgue_opts = 3,
     key_item = Letter,
     wrong_item_dialogue = """
@@ -141,6 +144,7 @@ Doctor_Innocente = Character(
         ("What is going on?", "Uh... somone died. What a second. It was you who died! No wait, that's wrong..."),
         ("Back", "Back *has* been implemented, so if this message comes up, somethings's gone wrong")]
     ),
+    dialogue_opts= [open("emma_dialogue1"), open("emma_dialogue2"), open("emma_dialogue3")],
     n_dialgue_opts = 3,
     key_item= Incrmination_docs,
     key_item_dialogue= """
@@ -151,7 +155,7 @@ Doctor_Innocente = Character(
     Vincent:
     Uh... Why did you show me that?
     """,
-    key_item_outcome= "Unlock"
+    key_item_outcome= "Unlock library"
 )
 
 class Room(object):
@@ -251,6 +255,7 @@ class Engine(object):
 
 
     #Allows player to choose a new room and move into it. Prints the opening description of that room
+    #make a for loop to populate this dict with available rooms.
     def move(self):
         print("Choose a room:\n1. Library \n2. Parlor")
         rooms = {
@@ -271,7 +276,7 @@ class Engine(object):
     
     def get_outcomes(self, input):
         outcomes = {
-            "Unlock": self.room.turn_lock(),
+            "Unlock library": self.room.turn_lock(),
             "Other": self.move
             }
 
@@ -281,18 +286,21 @@ class Engine(object):
         print("What would you like to present?:")
         #Show all the items the player has picked up
         if Inventory == []:
-            print("\nWhat a second. There's *nothing* in your inventory!")
+            print("\nWt a second. There's *nothing* in your inventory!")
+
         #Number all the options
         else:
             for item in range(len(Inventory)):
                 print(f"{item + 1} " + Inventory[item].name) #add a number to options presented to player
             item_choice = (input("> "))
+
             if item_choice.isnumeric():
                 if Inventory[int(item_choice) - 1] == self.room.character.key_item:
-                    slowprint(self.room.character.key_item.description)
+                    slowprint(self.room.character.key_item_dialogue)
                     self.get_outcomes(self.room.character.key_item_outcome)
                 else:
-                    print(self.wrong_item_dialogue)
+                    print(self.room.character.wrong_item_dialogue)
+
             else: 
                 print("You still have to enter a number. The game won't continue until you do. Believe me, I'm a computer, I can wait all day.")
                 input("")
@@ -322,8 +330,7 @@ class Engine(object):
         ("Check inventory", 4),
         ("Investigate", 5),
         ("Present", 6),
-        ("Quit", 8),
-        ("checklock", 9)]
+        ("Quit", 8)]
     )
 
 #for some reason, have to make this a function. I don't understand why,
@@ -340,7 +347,6 @@ class Engine(object):
                 self.room.investigate,
                 self.present,
                 self.quit,
-                self.checklock
             ]
         else: 
              options = [

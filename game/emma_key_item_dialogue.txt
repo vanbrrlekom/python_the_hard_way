@@ -7,10 +7,17 @@ EMMA: I will admit, this does not looks good for me.
 EMMA: But you have to believe me, I truly was only joking.
 EMMA: Yes, I know I got weirdly specific towards the end there.
 EMMA: But...
-EMMA: That's just how we joke!
+EMMA: That's just how we joke! Me and Silas, we're like that.
+EMMA: How could I have known he was going to end up dead just the way it was written in that letter?
+EMMA: ...
+YOU: ...
+EMMA: Don't look at me like that.
 EMMA: And anyway. The library was locked from the inside!
 EMMA: How could I have possibly committed the murder?
 EMMA: And you must admit, things do not look good for you either. 
 EMMA: How about, instead of throwing senseless accusations at each other, we work together?
 EMMA: And by work together, I mean, I'll wait here while you talk to the other guests.
 EMMA: Some of them are shifty as heck.
+EMMA: I'll unlock the doors for you. 
+EMMA: You should MOVE to a different room see who you can find.
+EMMA: When you have a plausible theory, come back and find me and we'll talk it out.

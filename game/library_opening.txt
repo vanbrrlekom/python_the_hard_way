@@ -28,6 +28,7 @@ With a last, final
 *CRASH*
 The door opens.
 A woman in a red dress, with long flowing hair spills in.
+You know her. She's... Emma Atalle. She's one of the guests.
         EMMA: Dear god. It's too late.
         YOU: Wha...?
         EMMA: You thought you could get away with it while we were all sleeping.
@@ -42,3 +43,8 @@ It looks like a man in his 50s, with a very bald head and a very big mustache.
 And then you look at your hands again.
 *Oh,* you think.
 What the hell happened last night?
+You consider your choices.
+In your brain-fog, you don't have a good sense of your surroundings. It might be a good idea to LOOK AROUND.
+Emma has seems to have some idea what's going on. Maybe you should TALK to her.
+Or maybe you should try to INVESTIGATE the crime scene, to find some proof of your innocent. You feel... pretty sure that you are innocent.
+Emma doesn't seem inclined to let you leave the room. Perhaps if you PRESENT her with the right item, she will be more inclined to help.
