@@ -60,20 +60,36 @@ class Item(object):
         self.portable = portable
 
 
-#Some items
+#Library items
 Knife = Item(
     name = "Bloody knife", 
-    description =  open("debugging.txt"),#"A bloody knife. There's an inscription on the hilt. You take take a closer look. The inscryption is... your initials. How strange. Eh, probably it probably doesn't mean anything. You pick it up, you freak.",
+    description =  open("docs/debugging.txt"),#"A bloody knife. There's an inscription on the hilt. You take take a closer look. The inscryption is... your initials. How strange. Eh, probably it probably doesn't mean anything. You pick it up, you freak.",
     portable= True)
 Letter = Item(
     name = "Pocket letter",
-    description= open("debugging.txt"),#open("pocket_letter_description.txt"),
+    description= open("docs/debugging.txt"),#open("pocket_letter_description.txt"),
     portable = True)
-
+key = Item(
+    name = "Library key",
+    description= open("docs/debugging.txt"),
+    portable = True
+)
+ampule = Item(
+    name= "Glass amuple",
+    description= open("docs/debugging.txt"),
+    portable = True
+)
+fireplace = Item(
+    name= "fireplace",
+    description= open("docs/debugging.txt"),
+    portable = True
+)
 Book = Item(
     name = "A boring book", 
-    description = "Just a boring old book",
+    description = open("docs/debugging.txt"),
     portable = True)
+
+#Parlor items
 Incrmination_docs = Item(
     name = "Incriminating documents", 
     description = "It's a piece of paper. The text says \"it was me i did it\". The signature is... your signature.",
@@ -88,7 +104,7 @@ Library_book = Item(
 class Character(object):
     def __init__(
             self, name, description, dialogue, dialogue_opts, n_dialgue_opts, key_item, 
-            key_item_dialogue, wrong_item_dialogue, key_item_outcome
+            key_item_dialogue, wrong_item_dialogue, key_item_outcome, disaster_dialogue
             ):
         self.description = description
         self.name = name
@@ -99,6 +115,7 @@ class Character(object):
         self.key_item_dialogue = key_item_dialogue
         self.key_item_outcome = key_item_outcome
         self.wrong_item_dialogue = wrong_item_dialogue
+        self.disaster_dialogue = disaster_dialogue
 
 
     def talk(self):
@@ -117,11 +134,11 @@ Emma_Atalle = Character(
     dialogue= Menu(
         "The woman eyes you very suspicously. You get the sense that maybe she suspects you of something. \n What do you talk about?" , [
         ("Don't move?", "None of your business"),
-        ("This place","Never ask the name a lady her name"),
-        ("Last night", "You tell me, you're the mureder"),
+        ("The victim.","Never ask the name a lady her name"),
+        ("This place.", "You tell me, you're the mureder"),
         ("Back", "Back *has* been implemented, so if this message comes up, somethings's gone wrong")]
     ),
-    dialogue_opts= [open("emma_dialogue1"), open("emma_dialogue2"), open("emma_dialogue3")],
+    dialogue_opts= [open("docs/emma_dialogue1.txt"), open("docs/emma_dialogue2.txt"), open("docs/emma_dialogue3.txt")],
     n_dialgue_opts = 3,
     key_item = Letter,
     wrong_item_dialogue = """
@@ -129,8 +146,32 @@ Emma_Atalle = Character(
     Emma:Oh dear. Please stop waving that around, someone could get hurt.
 
     """,
-    key_item_dialogue = open("debugging.txt"),#open("emma_key_item_dialogue.txt"),
-    key_item_outcome = "Unlock"
+    key_item_dialogue = open("docs/debugging.txt"),#open("emma_key_item_dialogue.txt"),
+    key_item_outcome = "Unlock",
+    disaster_dialogue= open("docs/debugging.txt")
+)
+
+Emma_Atalle_2 = Character(
+    name = "Emma Atalle",
+    description = "Also in the room stands a tall, bored-looking woman. Has she seen the body?\n \n",
+    dialogue= Menu(
+        "The woman eyes you very suspicously. You get the sense that maybe she suspects you of something. \n What do you talk about?" , [
+        ("Don't move?", "None of your business"),
+        ("The victim.","Never ask the name a lady her name"),
+        ("This place.", "You tell me, you're the mureder"),
+        ("Back", "Back *has* been implemented, so if this message comes up, somethings's gone wrong")]
+    ),
+    dialogue_opts= [open("docs/emma_dialogue1.txt"), open("docs/emma_dialogue2.txt"), open("docs/emma_dialogue3.txt")],
+    n_dialgue_opts = 3,
+    key_item = Letter,
+    wrong_item_dialogue = """
+    The woman looks at you with undisguised annoyance.
+    Emma:Oh dear. Please stop waving that around, someone could get hurt.
+
+    """,
+    key_item_dialogue = open("docs/debugging.txt"),#open("emma_key_item_dialogue.txt"),
+    key_item_outcome = "Unlock",
+    disaster_dialogue= open("docs/debugging.txt")
 
 )
 
@@ -138,24 +179,22 @@ Doctor_Innocente = Character(
     name = "Vincent Innocent",
     description = "In the room, you see a fidgeting man in a lab coat and a stethoscope around his neck\n \n",
     dialogue= Menu(
-        "The man figdets fidgetingly. \n What do you say?" , [
+        "What do you talk about?" , [
         ("Who are you", "Uh... I'm the doc"),
-        ("What is your name?","Uh... It's Vincent"),
-        ("What is going on?", "Uh... somone died. What a second. It was you who died! No wait, that's wrong..."),
+        ("Last night?","Uh... It's Vincent"),
+        ("Relation to the victim", "Uh... somone died. What a second. It was you who died! No wait, that's wrong..."),
         ("Back", "Back *has* been implemented, so if this message comes up, somethings's gone wrong")]
     ),
-    dialogue_opts= [open("emma_dialogue1"), open("emma_dialogue2"), open("emma_dialogue3")],
+    dialogue_opts= [open("docs/emma_dialogue1.txt"), open("docs/emma_dialogue2.txt"), open("docs/emma_dialogue3.txt")],
     n_dialgue_opts = 3,
     key_item= Incrmination_docs,
-    key_item_dialogue= """
-    Vincent:
-    Uh... What's that? It looks like a confession. OH, are YOU confessing?
-    """,
+    key_item_dialogue= open("docs/debugging.txt"),
     wrong_item_dialogue= """
     Vincent:
     Uh... Why did you show me that?
     """,
-    key_item_outcome= "Unlock library"
+    key_item_outcome= "Unlock library",
+    disaster_dialogue= open("docs/debugging.txt")
 )
 
 class Room(object):
@@ -203,8 +242,8 @@ class Room(object):
 
 
 Library_opening = Room(
-    opening= open("debugging.txt"), #open("library_opening.txt"),
-    description = open("library_description.txt"),
+    opening= open("docs/debugging.txt"), #open("docs/library_opening.txt"),
+    description = open("docs/library_description.txt"),
     character= Emma_Atalle,
     clues = [Knife, Letter, Book],
     n_clues = 3,
@@ -234,8 +273,8 @@ Library = Room(
 
 
 Parlor = Room(
-    opening= "\n \nThis is the parlor?\n \n",
-    description = "\nI don't actually know what a parlor is, but parlorlike things abound, I assume \n",
+    opening= open("docs/parlor_opening.txt"),
+    description =open("docs/parlor_description.txt"),
     character= Doctor_Innocente,
     clues = [Incrmination_docs],
     n_clues = 1,
@@ -264,7 +303,7 @@ class Engine(object):
         }
         room_choice = int(input("> "))
         self.room = rooms.get(room_choice)
-        print(self.room.opening + self.room.character.description)
+        slowprint(self.room.opening)
 
     def check_inventory(self):
         print("\nThe following items are in your inventory:")
@@ -284,10 +323,13 @@ class Engine(object):
 
     def present(self):
         print("What would you like to present?:")
+
+        disaster_opts = [Incrmination_docs]
         #Show all the items the player has picked up
+
         if Inventory == []:
             print("\nWt a second. There's *nothing* in your inventory!")
-
+        
         #Number all the options
         else:
             for item in range(len(Inventory)):
@@ -298,6 +340,11 @@ class Engine(object):
                 if Inventory[int(item_choice) - 1] == self.room.character.key_item:
                     slowprint(self.room.character.key_item_dialogue)
                     self.get_outcomes(self.room.character.key_item_outcome)
+
+                elif Inventory[int(item_choice) - 1] in disaster_opts:
+                    slowprint(self.room.character.disaster_dialogue)
+                    self.quit()
+
                 else:
                     print(self.room.character.wrong_item_dialogue)
 
