@@ -1,0 +1,33 @@
+YOU: What can you tell me about last night?
+ALMA: Let me hazard a guess:
+ALMA: You don't remember much about last night.
+YOU: Well... it's not about *what* you remember, it's about how you use.
+ALMA: If I may render my proffessional verdict,
+ALMA: I'd say you were shitfaced last night.
+YOU: If, uh, we might get back to the victim...
+ALMA: Of course, you and Silas both, were at it.
+ALMA: If I remember the progression of the evening, we started with dinner at 7pm.
+ALMA: You and Silas were already going at it, being, if I may say so, right little shits.
+YOU: I'm... sure we had our reasons.
+ALMA: I'll tell you the reason: alcohol. 
+ALMA: If I may give some proffessional advice, I'd say: 
+ALMA: "You better lay off that drink friend." If you want to remember your evenings in the morning at least.
+YOU: Was there anything that stood out to you at the dinner?
+YOU: Anyting that could be a clue in my murder investigation?
+ALMA: Nothing that I can think of.
+ALMA: I next saw you, well, here, in fact.
+ALMA: In this very room. 
+You look around at the messy room, guiltily.
+ALMA: I was sitting by myself, trying to read a book.
+YOU: And what were we doing.
+ALMA: You two were being a menace. 
+ALMA: I had to leave, it was impossible to stay in there.
+YOU: Do you remember anything we talked about.
+ALMA: Now that you ask, I do remember hearing something about about a knife.
+ALMA: And something else about a stabbing.
+ALMA: As I'm thinking about, that's really quite suspicious, isn't it?
+YOU: I'm the one investigating this murder, *you* don't really have to think too hard about it.
+Alma narrows here eyes. Is she growing more suspicious of you.
+YOU: Ehhh-nyway. Did you see either Silas or the two of us at anyt other point that evening.
+ALMA: I did not. After that, I went to my room. 
+ALMA: This morning, I got a text from

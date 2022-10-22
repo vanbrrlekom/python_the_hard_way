@@ -88,6 +88,11 @@ Book = Item(
     name = "A boring book", 
     description = open("docs/debugging.txt"),
     portable = True)
+brochure = Item(
+    name = "Castle brochure",
+    description= open("docs/brochure.txt"),
+    portable = True
+)
 
 #Parlor items
 Incrmination_docs = Item(
@@ -120,11 +125,17 @@ class Character(object):
 
     def talk(self):
         print(self.dialogue.display())
-        choice = int(input("> "))
-        while choice < len(self.dialogue_opts):
-            slowprint(self.dialogue_opts[choice -1])
-            print(self.dialogue.display())
-            choice = int(input("> "))
+        choice = input("> ")
+        if choice.isnumeric():
+            while choice < len(self.dialogue_opts)+1:
+                choice = int(choice)
+                slowprint(self.dialogue_opts[choice -1])
+                print(self.dialogue.display())
+                choice = int(input("> "))
+        else:
+            print("Come on wiseguy. You know the drill. It's numbers. That's what I want to see. None of this \"not numbers\" business")
+            input("Return to main menu.")
+        
     
             
 
@@ -139,14 +150,10 @@ Emma_Atalle = Character(
         ("Back", "Back *has* been implemented, so if this message comes up, somethings's gone wrong")]
     ),
     dialogue_opts= [open("docs/emma_dialogue1.txt"), open("docs/emma_dialogue2.txt"), open("docs/emma_dialogue3.txt")],
-    n_dialgue_opts = 3,
+    n_dialgue_opts = 4,
     key_item = Letter,
-    wrong_item_dialogue = """
-    The woman looks at you with undisguised annoyance.
-    Emma:Oh dear. Please stop waving that around, someone could get hurt.
-
-    """,
-    key_item_dialogue = open("docs/debugging.txt"),#open("emma_key_item_dialogue.txt"),
+    wrong_item_dialogue = open("docs/emma_wrong_item_dialogue.txt"),
+    key_item_dialogue = open("docs/emma_key_item_dialogue.txt"),#open("docs/debugging.txt"),
     key_item_outcome = "Unlock",
     disaster_dialogue= open("docs/debugging.txt")
 )
@@ -180,12 +187,12 @@ Doctor_Innocente = Character(
     description = "In the room, you see a fidgeting man in a lab coat and a stethoscope around his neck\n \n",
     dialogue= Menu(
         "What do you talk about?" , [
-        ("Who are you", "Uh... I'm the doc"),
+        ("The victim", 1),
         ("Last night?","Uh... It's Vincent"),
-        ("Relation to the victim", "Uh... somone died. What a second. It was you who died! No wait, that's wrong..."),
+        ("Suspcitions", "Uh... somone died. What a second. It was you who died! No wait, that's wrong..."),
         ("Back", "Back *has* been implemented, so if this message comes up, somethings's gone wrong")]
     ),
-    dialogue_opts= [open("docs/emma_dialogue1.txt"), open("docs/emma_dialogue2.txt"), open("docs/emma_dialogue3.txt")],
+    dialogue_opts= [open("docs/alma_dialogue1.txt"), open("docs/alma_dialogue2.txt"), open("docs/alma_dialogue3.txt")],
     n_dialgue_opts = 3,
     key_item= Incrmination_docs,
     key_item_dialogue= open("docs/debugging.txt"),
@@ -242,16 +249,18 @@ class Room(object):
 
 
 Library_opening = Room(
-    opening= open("docs/debugging.txt"), #open("docs/library_opening.txt"),
+    opening=  open("docs/library_opening.txt"),#open("docs/debugging.txt"),
     description = open("docs/library_description.txt"),
     character= Emma_Atalle,
-    clues = [Knife, Letter, Book],
-    n_clues = 3,
+    clues = [Knife, Letter, Book, brochure, fireplace],
+    n_clues = 5,
     investigation_menu = Menu(
             "You look around and the following items stand out to you:", [
                 ("The knife buried in the body", 1),
                 ("The rest of the body",2),
                 ("A book sitting loose in the shelf", 3),
+                ("The fireplace"),
+                ("Some sort of brochure on the fireplace mantle"),
                 ("Back", 4)
             ]
         )
@@ -261,7 +270,7 @@ Library = Room(
     opening= "\n \nYou return to library. The dead body is still.\n\nNow the door is unlocked... because you unlocked it.\n \n",
     description = "\nThe library has many books. \n",
     character= Emma_Atalle,
-    clues = [Library_book],
+    clues = [Library_book, Knife, Letter, Book, brochure],
     n_clues= 1,
     investigation_menu = Menu(
             "You look around and the following items stand out to you:", [
@@ -346,7 +355,7 @@ class Engine(object):
                     self.quit()
 
                 else:
-                    print(self.room.character.wrong_item_dialogue)
+                    slowprint(self.room.character.wrong_item_dialogue)
 
             else: 
                 print("You still have to enter a number. The game won't continue until you do. Believe me, I'm a computer, I can wait all day.")

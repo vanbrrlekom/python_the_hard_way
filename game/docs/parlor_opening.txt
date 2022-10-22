@@ -1,5 +1,9 @@
 You enter the parlor.
-It's empty. For a second, you feel betrayal and anger at Emma.
+It's empty.
+You look around. 
+Very empty.
+
+For a second, you feel betrayal and anger at Emma.
 Did she lie to you?
 Was it all just an excuse to get you out of the room?
 Then, the door opens and someone steps in.
@@ -9,4 +13,7 @@ She peers down at you, over perfectly round spectacles.
 You realize she's also got a stethoscope around her neck.
 ????: Well now, you must be the young person investigating the murder. 
 ????: I just came from the library, where I saw Emma.
+????: I suppose you already guessed, but poor Silas is unfortunately 
+????: Very, very dead.
+????: Anyway.
 ALMA: My name is Alma Innocente, I believe you have some questions for me.
