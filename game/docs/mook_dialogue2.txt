@@ -1,0 +1,32 @@
+YOU: Tell me about your relationship to Silas Vanderhosen
+TALLOW: Us and Silas, we were thick as thieves. 
+TALLOW: I men thick as upstanding citizens.
+HORTON: Friends we were. Best of friends.
+YOU: And what exactly was the nature of your relationship.
+TALLOW: We're not so conventional that we have to go put a label on everything.
+HORTON: We hate to label things. Including ourselves.
+YOU: But if you had to...?
+TALLOW: If you're holding a gun to our heads...
+TALLOW: Not that we know anything about holding gun's to people's heads.
+HORTON: We don't even know what guns look like.
+TALLOW: That's right. But if you *were* holding a gun to our heads.
+TALLOW: I'd say we were business partners.
+HORTON: Partners in business.
+YOU: And what kind of business.
+TALLOW: Getting real nosy there, aren't you?
+HORTON: You've a real big nose, don't you?
+You pointedly look at the brothers, with their matching pairs of abnormally large noses.
+YOU: Anyway, was that why you were here? To discuss your joint venture?
+TALLOW: Something like that. Y'see, a few years back, the three of us led a joint... venture together.
+HORTON: Ten years ago, we had a joint adventure.
+TALLOW: Shh, big brother's talking. And that venture was a roaring success.
+HORTON: That's right. Roaring like a tiger.
+TALLOW: And there was no falling out or bad blood or anything like that.
+HORTON: No one fell out of anything, or even knicked their anything. Except for Silas when we - 
+TALLOW: Shut it. Anyway, as I was saying, that business venture went off completely without a hitch.
+TALLOW: And now we tracked down Silas again, simply to propose another business venture.
+HORTON: That's right. Completely innocent. Just another business venture.
+YOU: Okay... And that's why you're here now? To restart your business relationship.
+TALLOW: That's what we said. Weren't you listening?
+HORTON: Do you need hearing aids?
+The brothers look like they've said all they have to say about that topic, so you decide to ask them about something else. 

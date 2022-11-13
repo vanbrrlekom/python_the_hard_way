@@ -59,6 +59,12 @@ class Item(object):
         self.description = description
         self.portable = portable
 
+#ambient items
+mean_tweets = Item(
+    name = "A printout of some mean tweets",
+    description= open("docs/debugging.txt"),
+    portable = True
+)
 
 #Library items
 Knife = Item(
@@ -67,7 +73,7 @@ Knife = Item(
     portable= True)
 Letter = Item(
     name = "Pocket letter",
-    description= open("docs/debugging.txt"),#open("pocket_letter_description.txt"),
+    description= open("docs/pocket_letter_description.txt"),
     portable = True)
 key = Item(
     name = "Library key",
@@ -102,7 +108,32 @@ Incrmination_docs = Item(
 Library_book = Item(
     name = "A fun book", 
     description= "this book is way more fun",
-    portable= True)
+    portable = True)
+building_permits = Item(
+    name = "Some boring looking documents",
+    description= open("docs/debugging.txt"),
+    portable = True
+)
+
+#Orangery Items
+leftovers = Item(
+    name = "A half-eaten plate",
+    description= open("docs/debugging.txt"),
+    portable= True
+)
+
+glass_ceiling = Item(
+    name = "The clear glass ceiling",
+    description= open("docs/debugging.txt"),
+    portable= True
+)
+
+#Cellar items
+drink = Item(
+    name = "A bottle of alcohol",
+    description= open("docs/debugging.txt"),
+    portable= TRUE
+)
 
 # When implementing dialogue, it's important to make it in then
 # format Menu("title", ["question", "answer"], ["back", "placeholder"])
@@ -171,11 +202,7 @@ Emma_Atalle_2 = Character(
     dialogue_opts= [open("docs/emma_dialogue1.txt"), open("docs/emma_dialogue2.txt"), open("docs/emma_dialogue3.txt")],
     n_dialgue_opts = 3,
     key_item = Letter,
-    wrong_item_dialogue = """
-    The woman looks at you with undisguised annoyance.
-    Emma:Oh dear. Please stop waving that around, someone could get hurt.
-
-    """,
+    wrong_item_dialogue = "EMMA: Oh dear. Please stop waving that around, someone could get hurt.",
     key_item_dialogue = open("docs/debugging.txt"),#open("emma_key_item_dialogue.txt"),
     key_item_outcome = "Unlock",
     disaster_dialogue= open("docs/debugging.txt")
@@ -183,25 +210,53 @@ Emma_Atalle_2 = Character(
 )
 
 Doctor_Innocente = Character(
-    name = "Vincent Innocent",
+    name = "Alma Innocent",
     description = "In the room, you see a fidgeting man in a lab coat and a stethoscope around his neck\n \n",
     dialogue= Menu(
         "What do you talk about?" , [
         ("The victim", 1),
         ("Last night?","Uh... It's Vincent"),
-        ("Suspcitions", "Uh... somone died. What a second. It was you who died! No wait, that's wrong..."),
+        ("Suspitions", "Uh... somone died. What a second. It was you who died! No wait, that's wrong..."),
         ("Back", "Back *has* been implemented, so if this message comes up, somethings's gone wrong")]
     ),
     dialogue_opts= [open("docs/alma_dialogue1.txt"), open("docs/alma_dialogue2.txt"), open("docs/alma_dialogue3.txt")],
     n_dialgue_opts = 3,
     key_item= Incrmination_docs,
     key_item_dialogue= open("docs/debugging.txt"),
-    wrong_item_dialogue= """
-    Vincent:
-    Uh... Why did you show me that?
-    """,
+    wrong_item_dialogue= "ALMA: What a lovely little object. What do you want me to do with it?",
     key_item_outcome= "Unlock library",
     disaster_dialogue= open("docs/debugging.txt")
+)
+
+Brothers_Mook = Character(
+    name = "The Brothers Mook",
+    dialogue= Menu("The brothers give you a withering stare. You consider carefully which topic to bring up.", [
+        ("Apology", 1),
+        ("Last night", 2),
+        ("Link to the victim", 3),
+        ("Back", 4)
+    ]),
+    dialogue_opts= [open("docs/mook_dialogue1.txt"), open("docs/mook_dialogue2.txt"), open("docs/mook_dialogue3.txt")],
+    n_dialgue_opts= 3,
+    description = "I suspect that this is redundant now",
+    key_item = building_permits,
+    key_item_dialogue = open("docs/debugging.txt"),
+    wrong_item_dialogue = "Placeholder: The brothers glance contemptuously at the thing you've showed them.",
+    key_item_outcome= "Don't know yet",
+    disaster_dialogue= open("docs/debugging.txt")
+)
+
+Omar = Character(
+    name= "Omar",
+    description= open("docs/debugging.txt"),
+    dialogue = Menu("Placeholder", [("docs/debugging.txt", 1)]),
+    dialogue_opts= [open("docs/debugging.txt")],
+    n_dialgue_opts= 1,
+    key_item= mean_tweets,
+    wrong_item_dialogue= "Placeholder",
+    key_item_dialogue= open("docs/debugging.txt"),
+    disaster_dialogue= open("docs/debugging.txt"),
+    key_item_outcome= "Unlock"
 )
 
 class Room(object):
@@ -244,9 +299,7 @@ class Room(object):
             print("Yeah, yeah, you tried to see what happens if you enter not a number. Very clever.")
             input("Return to main menu")
             
-            
-
-
+    
 
 Library_opening = Room(
     opening=  open("docs/library_opening.txt"),#open("docs/debugging.txt"),
@@ -295,20 +348,41 @@ Parlor = Room(
         )
 )
 
+Orangery = Room(
+    opening = open("docs/orangery_opening.txt"),
+    description= open("docs/orangery_description.txt"),
+    character= Brothers_Mook,
+    clues = [glass_ceiling, leftovers],
+    n_clues= 2,
+    investigation_menu= Menu(
+        "Withering the suspicious glares of the brothers Mook, you try to discretely investigate the orangery", [
+            ("The glass ceiling", 1),
+            ("A plate of leftovers", 2)
+        ]
+    )
+)
+
+Cellar = Room(
+    opening = open("docs/debugging.txt"),
+    description= open("docs/debugging.txt"),
+    character= Omar,
+    clues = []
+
+)
 class Engine(object):
 
     def __init__(self, room):
         self.room = room
     
-
-
     #Allows player to choose a new room and move into it. Prints the opening description of that room
     #make a for loop to populate this dict with available rooms.
     def move(self):
         print("Choose a room:\n1. Library \n2. Parlor")
         rooms = {
             1: Library,
-            2: Parlor
+            2: Parlor,
+            3: Orangery,
+            4: Cellar
         }
         room_choice = int(input("> "))
         self.room = rooms.get(room_choice)

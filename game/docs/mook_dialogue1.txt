@@ -1,0 +1,51 @@
+YOU: I think I should make something clear. 
+YOU: I'm assuming I did something to you last night.
+YOU: But if I did, you must have seen me. I was pretty drunk.
+YOU: So whatever I did, I'm really, really sorry. 
+YOU: Even if I don't remember exactly what I'm apologizing for.
+Both brother stare at you, openly hostile.
+TALL BROTHER: What you did, you don't just apologize for.
+YOU: But you- 
+The other brother interrupts you before you have the chance to say more.
+SHORT BROTHER: That's right. You committed murder. That's beyond pale.
+TALL BROTHER: Silas was our friend.
+SHORT BROTHER: Our very good friend. And you murdered him.
+TALL BROTHER: That's just not right.
+You're caught of guard for a moment. 
+You hadn't expected them to have already have heard about the murder.
+And you hadn't expected to be so directly accused. Again.
+And then you realize. 
+For two brothers who just lost "a very good friend" the two brothers don't look very upset.
+Suspicious, hostile, yes, but not upset.
+YOU: For having just lost your close friend, you don't seem very upset.
+TALL BROTHER: Are you going police our grief now? That's quite some nerve you have there.
+SHORT BROTHER: Very nervous! People express grief in different ways, y'know.
+TALL BROTHER: If we were bawling our eyes out, clutching our hearts, bedridden from sorrow, would that satisfy you?
+SHORT BROTHER: We're grieving here, and all we get from you is demand and suspcioun. That's not right!
+YOU: I'm sorry for your loss. I promise you, I didn't kill Silas.
+TALL BROTHER: Don't believe you.
+SHORT BROTHER: You're a shifty one.
+You sigh.
+YOU: I didn't want to have to do this, but it seems clear we're not going to get anywhere if I don't.
+You show the brothers the letter incriminating Emma.
+They read it, slowly, line by line.
+TALL BROTHER: Well that's stupid, isn't it?
+SHORT BROTHER: Dumbest thing I've ever heard. Eh, but just for this idiot's benefit, what's stupid about it?
+TALL BROTHER: If you're going to commit a crime, don't put it in writing. 
+TALL BROTHER: Not that we know anytihng about doing crime.
+SHORT BROTHER: That's rigth, we know almost everything about doing crime.
+The tall brother shoots his short brother and angry look.
+SHORT BROTHER: Ehh, I mean we don't know anything at all about doing crime.
+SHORT BROTHER: Upstanding citizens, that's us.
+YOU: I think this shows that almost anyone can look suspicious.
+YOU: I think you should answer my questions now. 
+TALL BROTHER: I think you make a fair point.
+SHORT BROTHER: It's a fair enough point.
+TALL BROTHER: We'll answer your stupid questions.
+SHORT BROTHER: I bet your questions are real dumb. 
+YOU: And can you *please* tell me your names. 
+YOU: I can't keep thinking about you as "TALL" and "SHORT".
+TALL BROTHER: What a rude way to ask our names.
+SHORT BROTHER: I've never heard anyone ask someone's name so rudely.
+TALLOW: But fine. I'm Tallow Mook.
+HORTON: Finest thing in the world. I'm Horton Mook.

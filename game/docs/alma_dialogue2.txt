@@ -1,7 +1,7 @@
 YOU: What can you tell me about last night?
 ALMA: Let me hazard a guess:
 ALMA: You don't remember much about last night.
-YOU: Well... it's not about *what* you remember, it's about how you use.
+YOU: Well... it's not about *what* you remember, it's about *how* you remember.
 ALMA: If I may render my proffessional verdict,
 ALMA: I'd say you were shitfaced last night.
 YOU: If, uh, we might get back to the victim...
@@ -11,12 +11,10 @@ ALMA: You and Silas were already going at it, being, if I may say so, right litt
 YOU: I'm... sure we had our reasons.
 ALMA: I'll tell you the reason: alcohol. 
 ALMA: If I may give some proffessional advice, I'd say: 
-ALMA: "You better lay off that drink friend." If you want to remember your evenings in the morning at least.
-YOU: Was there anything that stood out to you at the dinner?
-YOU: Anyting that could be a clue in my murder investigation?
-ALMA: Nothing that I can think of.
-ALMA: I next saw you, well, here, in fact.
-ALMA: In this very room. 
+ALMA: "You better lay off that drink friend." 
+ALMA: If you want to remember your evenings in the morning at least.
+YOU: Did you see me or Silas at any other point in the evening.
+ALMA: I did. I saw the two of you in this very room. 
 You look around at the messy room, guiltily.
 ALMA: I was sitting by myself, trying to read a book.
 YOU: And what were we doing.
@@ -25,9 +23,28 @@ ALMA: I had to leave, it was impossible to stay in there.
 YOU: Do you remember anything we talked about.
 ALMA: Now that you ask, I do remember hearing something about about a knife.
 ALMA: And something else about a stabbing.
-ALMA: As I'm thinking about, that's really quite suspicious, isn't it?
+ALMA: As I'm thinking about it, that's really quite suspicious, isn't it?
 YOU: I'm the one investigating this murder, *you* don't really have to think too hard about it.
-Alma narrows here eyes. Is she growing more suspicious of you.
+Alma narrows here eyes. Is she growing more suspicious of you?
 YOU: Ehhh-nyway. Did you see either Silas or the two of us at anyt other point that evening.
 ALMA: I did not. After that, I went to my room. 
-ALMA: This morning, I got a text from
+ALMA: This morning, I got a text from Emma telling me to come down to the library, sharpish.
+YOU: What I'm hearing you say is, you have no alibi.
+ALMA: And why, exactly, would I need an alibi?
+YOU: No one can be above suspicion
+ALMA: Oh? The way I heard, it, you were found with the victim in a room that was locked from the inside.
+ALMA: And you're hands are still covered in blood. 
+YOU: Uh...
+You make a mental note to wash your hands the next time you get the chance.
+ALMA: I'd say you're pretty suspicious yourself.
+YOU: Like I said, I'm the one doing the investigating, I'll make sure to look into all of that.
+YOU: Tell me this: When was the last time you spoke to the victim?
+ALMA: Well, that was actually right before dinner. 
+ALMA: He insisted I prescribe him a set of sleeping pills.
+YOU: And what did you tell him?
+ALMA: I refused. I said he'd had enough of that stuff. He didn't like that.
+ALMA: Wouldn't say another word to me for the rest of the night.
+YOU: It sounds like quite the falling out. 
+ALMA: It was nothing like that. Silas was always like that. 
+ALMA: One moment he'd be your best friend, the next he'd be down your throat.
+ALMa: And that's all I have to say about that. 

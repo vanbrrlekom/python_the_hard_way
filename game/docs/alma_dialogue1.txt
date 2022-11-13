@@ -29,7 +29,7 @@ ALMA: "No."
 ALMA: And that would be the end of the discussion.
 ALMA: With his mysterious millions, no one could really tell him what to do anyway.
 YOU: Hold on. Why do you say mysterious?
-ALMA: Oh? No told you? Hi didn't come from money, you know.
+ALMA: Oh? No one told you? He didn't come from money, you know.
 YOU: No?
 ALMA: Quite the opposite in fact. 
 ALMA: His whole family was dirt poor. 
@@ -41,7 +41,7 @@ YOU: You think it might have been something illegal?
 ALMA: If it was, no one ever got to the bottom of it. 
 ALMA: Anyway, as his personal physician I remain obligated to only say nice things about him.
 ALMA: So I'm sure it was all above board.
-ALMA: And all that was before my time, so I don't know anything about it. 
+ALMA: And all that was before my time, more than 10 years ago, so I don't know anything about it. 
 You make a mental note. This seems to be important.
 
 

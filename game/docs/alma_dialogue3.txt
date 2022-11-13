@@ -1,1 +1,21 @@
-YOU: 
+YOU: Was there anyone else you thought was behaving suspiciously?
+ALMA: As a matter of fact there was.
+ALMA: Those Mook brothers, for one. 
+YOU: Tell me about them.
+ALMA: They've been skulking around the castle for days now, always in the shadows it seems.
+ALMA: I got the distinct impression that Silas was avoiding them.
+ALMA: They were giving Silas some pretty dirty looks all evening. Have you talked to them?
+ALMA: Or that Omar guy?
+ALMA: He was also at dinner if I remember correctly.
+YOU: What do you know about him?
+ALMA: Almost nothing. 
+ALMA: I gather he was some sort of old business friend or something like that.
+ALMA: Though I wonder how good friends they really were.
+YOU: Why do you wonder?
+ALMA: I overheard them. They were having quite an argument. 
+ALMA: Seems like they were shouting down each other's throats.
+YOU: Souns like a serious fight. Did you hear what they were saying.
+ALMA: I don't make a habit out of eavesdropping on my patients.
+YOU: So... you didn't hear what they were saying.
+ALMA: That's what I was implying, yes.
+You don't think you're going to get any more out of her on this topic.
