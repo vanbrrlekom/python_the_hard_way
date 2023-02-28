@@ -73,7 +73,7 @@ Knife = Item(
     portable= True)
 Letter = Item(
     name = "Pocket letter",
-    description= open("docs/pocket_letter_description.txt"),
+    description= open("docs/debugging.txt"),#open("docs/pocket_letter_description.txt"),
     portable = True)
 key = Item(
     name = "Library key",
@@ -109,9 +109,10 @@ Library_book = Item(
     name = "A fun book", 
     description= "this book is way more fun",
     portable = True)
+
 building_permits = Item(
     name = "Some boring looking documents",
-    description= open("docs/debugging.txt"),
+    description= open("docs/building_permits_description.txt"),
     portable = True
 )
 
@@ -135,6 +136,7 @@ drink = Item(
     portable= TRUE
 )
 
+
 # When implementing dialogue, it's important to make it in then
 # format Menu("title", ["question", "answer"], ["back", "placeholder"])
 class Character(object):
@@ -154,15 +156,20 @@ class Character(object):
         self.disaster_dialogue = disaster_dialogue
 
 
+# a function to let the player talk to characters. This over-wrought code is meant to make sure tht the player enters an integer so tht the game doesn't crash
     def talk(self):
         print(self.dialogue.display())
         choice = input("> ")
         if choice.isnumeric():
+            choice = int(choice)
             while choice < len(self.dialogue_opts)+1:
-                choice = int(choice)
                 slowprint(self.dialogue_opts[choice -1])
                 print(self.dialogue.display())
-                choice = int(input("> "))
+                choice = input("> ")
+                if choice == "":
+                    print("Please enter a value.")
+                    continue
+                choice = int(choice)
         else:
             print("Come on wiseguy. You know the drill. It's numbers. That's what I want to see. None of this \"not numbers\" business")
             input("Return to main menu.")
@@ -216,7 +223,7 @@ Doctor_Innocente = Character(
         "What do you talk about?" , [
         ("The victim", 1),
         ("Last night?","Uh... It's Vincent"),
-        ("Suspitions", "Uh... somone died. What a second. It was you who died! No wait, that's wrong..."),
+        ("Suspicions", "Uh... somone died. What a second. It was you who died! No wait, that's wrong..."),
         ("Back", "Back *has* been implemented, so if this message comes up, somethings's gone wrong")]
     ),
     dialogue_opts= [open("docs/alma_dialogue1.txt"), open("docs/alma_dialogue2.txt"), open("docs/alma_dialogue3.txt")],
@@ -232,8 +239,8 @@ Brothers_Mook = Character(
     name = "The Brothers Mook",
     dialogue= Menu("The brothers give you a withering stare. You consider carefully which topic to bring up.", [
         ("Apology", 1),
-        ("Last night", 2),
-        ("Link to the victim", 3),
+        ("Link to the victim", 2),
+        ("Last night", 3),
         ("Back", 4)
     ]),
     dialogue_opts= [open("docs/mook_dialogue1.txt"), open("docs/mook_dialogue2.txt"), open("docs/mook_dialogue3.txt")],
@@ -241,7 +248,7 @@ Brothers_Mook = Character(
     description = "I suspect that this is redundant now",
     key_item = building_permits,
     key_item_dialogue = open("docs/debugging.txt"),
-    wrong_item_dialogue = "Placeholder: The brothers glance contemptuously at the thing you've showed them.",
+    wrong_item_dialogue = open("docs/debugging.txt"),
     key_item_outcome= "Don't know yet",
     disaster_dialogue= open("docs/debugging.txt")
 )
@@ -249,7 +256,7 @@ Brothers_Mook = Character(
 Omar = Character(
     name= "Omar",
     description= open("docs/debugging.txt"),
-    dialogue = Menu("Placeholder", [("docs/debugging.txt", 1)]),
+    dialogue = Menu("Omar", [("docs/debugging.txt", 1)]),
     dialogue_opts= [open("docs/debugging.txt")],
     n_dialgue_opts= 1,
     key_item= mean_tweets,
@@ -302,8 +309,8 @@ class Room(object):
     
 
 Library_opening = Room(
-    opening=  open("docs/library_opening.txt"),#open("docs/debugging.txt"),
-    description = open("docs/library_description.txt"),
+    opening=  open("docs/debugging.txt"),#open("docs/library_opening.txt"),#),
+    description = open("docs/debugging.txt"),#open("docs/library_description.txt"),
     character= Emma_Atalle,
     clues = [Knife, Letter, Book, brochure, fireplace],
     n_clues = 5,
@@ -357,7 +364,8 @@ Orangery = Room(
     investigation_menu= Menu(
         "Withering the suspicious glares of the brothers Mook, you try to discretely investigate the orangery", [
             ("The glass ceiling", 1),
-            ("A plate of leftovers", 2)
+            ("A plate of leftovers", 2),
+            ["Back", 2]
         ]
     )
 )
@@ -366,7 +374,14 @@ Cellar = Room(
     opening = open("docs/debugging.txt"),
     description= open("docs/debugging.txt"),
     character= Omar,
-    clues = []
+    clues = [drink],
+    n_clues = 1,
+    investigation_menu= Menu(
+        "The cellar is dank and full of drinks", [
+            ("Drink", 1),
+            ("Back", 3)
+        ]
+    )
 
 )
 class Engine(object):
@@ -377,7 +392,7 @@ class Engine(object):
     #Allows player to choose a new room and move into it. Prints the opening description of that room
     #make a for loop to populate this dict with available rooms.
     def move(self):
-        print("Choose a room:\n1. Library \n2. Parlor")
+        print("Choose a room:\n1. Library \n2. Parlor \n3. Orangery \n4. Cellar" )
         rooms = {
             1: Library,
             2: Parlor,
