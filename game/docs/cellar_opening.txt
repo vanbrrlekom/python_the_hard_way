@@ -5,3 +5,22 @@ The space is dimly lit, with flickering candles casting shadows on the walls.
 The atmosphere is cozy, with plush armchairs and sofas arranged around small wooden tables.
 A lone man, shortish with a shaved head sits in the corner, nursing a whiskey. 
 It must be Omar.
+He is comfortably draped over one of the plusher armchairs, casually sipping from a whiskey on the rocks.
+He is perhaps in his early 30s, dressed in a dapper, if flamboyant suit.
+He looks at you like he's been expecting you to talk to him.
+OMAR: Ah, there you are. I've been expecting you to talk to me.
+YOU: You... you have?
+OMAR: Why naturally. There's been a murder, we're the only guests.
+OMAR: Anything else would be a derelection of duty, don't yuou think?
+YOU: Well I... I thought so but...
+You don't quite know what to say.
+OMAR: Come here, old bean. Have a seat. The whiskey is perfectly agreeable.
+As you take your seat, he makes as if to pour a whiskey into an empty glass, before stopping.
+OMAR: Though, come to think about it, perhaps not, eh? 
+OMAR: You and Silas were being quite naughty last night.
+OMAR: I think a little break from the old alkie might be for the pest in this case.
+OMAR: Don't you agree?
+YOU: ... 
+OMAR: Oh, come now. Don't be like that. Pouting doesen't suit you.
+YOU: I'm not pouting!
+OMAR: 
