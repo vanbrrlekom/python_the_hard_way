@@ -18,9 +18,10 @@ OMAR: Come here, old bean. Have a seat. The whiskey is perfectly agreeable.
 As you take your seat, he makes as if to pour a whiskey into an empty glass, before stopping.
 OMAR: Though, come to think about it, perhaps not, eh? 
 OMAR: You and Silas were being quite naughty last night.
-OMAR: I think a little break from the old alkie might be for the pest in this case.
 OMAR: Don't you agree?
-YOU: ... 
+YOU: I don't know if I'd phrase it quite like that..
 OMAR: Oh, come now. Don't be like that. Pouting doesen't suit you.
 YOU: I'm not pouting!
-OMAR: 
+OMAR: Have it your way. 
+Omar takes another sip from his glass.
+OMAR: So, what did you want to talk about?
