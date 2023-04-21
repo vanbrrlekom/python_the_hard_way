@@ -1,1 +1,13 @@
-mook_wrong_item_dialogue.txt
+TALLOW: What's that you got there?
+HORTON: We've also got things y'know. It's not just you.
+YOU: What do you think about THIS? 
+You show the brothers an item which you are sure to upend the entire case.
+TALLOW: That's just some old trinket isn't it?
+HORTON: Now if it was valuable, that'd be another thing. We could help you - 
+Tallow suddenly elbows his brother in the gut.
+TALLOW: Appreciate it. We could help you appreciate it.
+HORTON: We're very good at appreciating things! We appreciate all things valuable.
+TALLOW: And that's not.
+You look at the worthless item in your hand. 
+"How could I possibly think this was worth showing the brothers?"
+You think to yourself. 
