@@ -1,14 +1,44 @@
-Title: "last night"
-
-PC asks Omar what he remembers of last night.
-
-Omar says the following: he had dinner with everyone at seven.
-Like everyone, he was disappointed to note that there wouldn't
-be the famous blood pudding.
-He observed PC and silas drinking in the orangery at 8.
-He was drinking alone in the bar
-until 10. 
-That was when Silas and PC came back into the main cellar.
-PC was yelling at Silas, being very threatening.
-Saying things like "if you don't get a hold of yourself, 
-I'm going to stab you in the back."
+YOU: What do you rmember about last night?
+Omar takes a long sip from his whiskey.
+OMAR: Well, old, bean, I was wondering when you'd get to that little detail.
+OMAR: Unlike some of us, my memory is perfect
+YOU: Then you'll have no trouble recounting in precise detail 
+YOU: exactly what you were doing and what you saw.
+Omar takes another slow sip.
+OMAR: Thing is. I don't quite like your tone. 
+OMAR: We're all chums here. 
+OMAR: But they way you're asking, is making me question your true intentions.
+You begin to object, but Omar holds up a hand, silencing you.
+OMAR: Now, now. Don't worry. I'll tell you what I remember.
+OMAR: I first saw you at dinner, you and Silas seemed to be finding something *very* funny.
+OMAR: Starting early, going hard. Tsk. Tsk. 
+YOU: Yes, yes, yes. Did you see anything interesting? 
+YOU: Anything about the guests?
+OMAR: Well, I'll tell you one thing.
+OMAR: Dinner was absolutely dreadful. 
+OMAR: I'll tell you one thing. 
+OMAR: I did notice the good doctor, and that minx Emma 
+OMAR: getting awfully chummy with each other. 
+OMAR: Suspicuos. If I may say so. 
+YOU: Interesting. Anything else?
+OMAR: After dinner, I went to my room to refresh.
+OMAR: I nipped back down to the orangery for some refreshments.
+OMAR: You and Silas were still going at it. 
+OMAR: So I decided to come here instead.
+YOU: Did you see anything after that?
+OMAR: As a matter of fact I did.
+OMAR: You and Silas came down. Around ten I believe it was.
+OMAR: I didn't stay long, because you were making even more of a racket.
+OMAR: In fact, you were having quite a row, as far as I could tell.
+YOU: No... That doesn't sound like us.
+OMAR: Well that's what I heard.
+OMAR: I didn't stay very long.
+OMAR: But I distinctly heard you yelling:
+OMAR: "if you don't get a hold of yourself,"
+OMAR: "I'm going to stab you in the front."
+OMAR: You were bing quite viscious, if I may so myself.
+Omar grins at you wickedly.
+OMAR: "Say, how did the old boy die?"
+YOU: We-eell. That's neither here nor there. 
+YOU: He died, and we don't need to think much more about that. 
+OMAR: Is that so? 

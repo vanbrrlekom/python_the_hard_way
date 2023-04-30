@@ -1,4 +1,20 @@
-Any theories on the murder?
+YOU: Do you have any theories on who did?
+OMAR: Excuse me. Silas was a good friend.
+OMAR: You'll forgive me if I don't participate in this macabre exercise.
+YOU: Okay, but what if I really wanted you to. 
+YOU: And what if I didn't stop asking.
+YOU: It might be the clue that cracks the whole case wide open.
+OMAR: I didn't know it was up to you to crack anything open.
+OMAR: Let alone this case.
+YOU: Come one.
+Omar sights.
+OMAR: I suppose you won't let up will you?
+YOU: That's my strongest trait.
+OMAR: Indeed.
+OMAR: If you must know, my strongest belief is that you did it.
+YOU: Oh come on. What makes you say that?
+
+
 
 Omar will say his main thoery is that pc did it.
 His second theory is that Emma and Alma colluded.

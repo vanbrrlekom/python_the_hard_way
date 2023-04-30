@@ -1,1 +1,24 @@
-mook_disaster_dialogue.txt
+YOU: What do you make of this damning evidence?
+TALLOW: Let me see that.
+HORTON: That's a piece of paper, unless I'm very much mistaken
+YOU: That's right.
+TALLOW: Oh. Oh, oh, oh.
+HORTON: Ho, ho, ho, ho.
+Tallo looks like he is about to say something, but holds his tounge in the end.
+TALLOW: I see what this is.
+HORTON: You're showing us something visible.
+TALLOW: That's right brother. 
+Tallow winks.
+HORTON: You're one of us. 
+TALLOW: A human.
+HORTON: That's... sure. That too. Don't worry, you're secret's safe with us. 
+You go about you're day, relieved that your extraordinary trust in the brothers was not misplaced.
+Then, just as you are about to crack the case wide opens.
+WHEEE OOOHH WHEEEE OOOH WHEE OOOH
+Sirens! 
+It's the cops!
+Seems like the brothers spilled the beans about your confession in the end.
+Why, um, why did you think showing them that was a good idea?
+Well, game's over. You spend the rest of your life in prison for a murder that you
+*probably* didn't commit.
+Well done. 

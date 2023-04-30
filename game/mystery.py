@@ -284,13 +284,15 @@ Omar = Character(
 )
 
 class Room(object):
-    def __init__(self, opening, description, character, clues, n_clues, investigation_menu):
+    def __init__(self, opening, description, character, clues, n_clues, investigation_menu, revisit):
         self.opening = opening
         self.character = character
         self.clues = clues
         self.investigation_menu = investigation_menu
         self.description = description
         self.n_clues = n_clues
+        self.visited = False
+        self.revisit = revisit
 
     locked = False
 
@@ -335,6 +337,7 @@ class Room(object):
 Library_opening = Room(
     opening=  open("docs/debugging.txt"),#open("docs/library_opening.txt"),#),
     description = open("docs/library_description.txt"),
+    revisit= "placeholder",
     character= Emma_Atalle,
     clues = [Knife, Letter, key, glass_shards, book, brochure, fireplace],
     n_clues = 5,
@@ -354,6 +357,7 @@ Library_opening = Room(
 
 Library = Room(
     opening= open("docs/library_unlocked_description.txt"),
+    revisit= open("docs/debugging.txt"),
     description = open("docs/debugging.txt"),
     character= Emma_Atalle,
     clues = [Library_book, Knife, Letter, book, brochure],
@@ -374,6 +378,7 @@ Library = Room(
 
 Parlor = Room(
     opening= open("docs/parlor_opening.txt"),
+    revisit= "You're in the Parlor again. Alma looks at you kindly as you re-enter",
     description =open("docs/parlor_description.txt"),
     character= Doctor_Innocente,
     clues = [Incrminating_docs, Library_book,  building_permits, scrap_paper],
@@ -391,6 +396,7 @@ Parlor = Room(
 
 Orangery = Room(
     opening = open("docs/orangery_opening.txt"),
+    revisit= open("docs/orangery_revisit.txt"),
     description= open("docs/orangery_description.txt"),
     character= Brothers_Mook,
     clues = [glass_ceiling, leftovers],
@@ -399,7 +405,7 @@ Orangery = Room(
         "Withering the suspicious glares of the brothers Mook, you try to discretely investigate the orangery", [
             ("The glass ceiling", 1),
             ("A plate of leftovers", 2),
-            ["Back", 2]
+            ["Back", 2] 
         ]
     )
 )
@@ -407,6 +413,7 @@ Orangery = Room(
 Cellar = Room(
     opening = open("docs/debugging.txt"),
     description= open("docs/debugging.txt"),
+    revisit= "You're back in the cellar",
     character= Omar,
     clues = [drink],
     n_clues = 1,
@@ -436,7 +443,11 @@ class Engine(object):
         room_choice = input("> ")
         if room_choice.isnumeric():
             self.room = rooms.get(int(room_choice))
-            slowprint(self.room.opening)
+            if self.room.visited == False:
+                slowprint(self.room.opening)
+                self.room.visited == True
+            else:
+                slowprint(self.room.revisit)
         else:
             print("Heyyy. That's not what I asked for. I asked for a number! Give me a number please!")
 
