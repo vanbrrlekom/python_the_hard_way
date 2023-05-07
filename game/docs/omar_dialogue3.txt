@@ -13,12 +13,44 @@ YOU: That's my strongest trait.
 OMAR: Indeed.
 OMAR: If you must know, my strongest belief is that you did it.
 YOU: Oh come on. What makes you say that?
-
-
-
-Omar will say his main thoery is that pc did it.
-His second theory is that Emma and Alma colluded.
-What are his bases for that suspicion? 
-1. Their names are too similar. Never trust people with too simlar names.
-2. He saw them huddled together, chatting  in the parlor.
-When was this?
+OMAR: Do I really need to spell it out for you?
+OMAR: I heard you arguing. 
+OMAR: *Clearly* threatening to kill him.
+OMAR: And then there's the matter of that you were *locked in* with Silas.
+OMAR: The door was locked. It would have been literally imossible for anyone to come in.
+YOU: You don't know that! 
+YOU: Maybe there was a secret passage! 
+OMAR: I'm afraid that's impossible. 
+OMAR: I asked to have a loock at the blueprints earlier.
+OMAR: The location of the room very conveniently makes it impossible to construct a secret passage.
+OMAR: The only way in and out was through that door. 
+YOU: Okay. Okay. Well. Let's just *pretend* you have another theory.
+YOU: You're clearly very attached to this whole 
+YOU: "I did it" idea. But what if you *had* to come up with an alternative theory?
+Omar sights even deeper than before. 
+OMAR: Are you telling me that if I make an alternative theory that you'll stop bugging me about this?
+YOU: Yes! That's exactly wht I'm saying!
+OMAR: All right then. But just to be clear, this is not my favorite theory.
+YOU: Yes, yes, I get it. Just tell me your alternative theory.¨
+OMAR: So, my other theory is that it was Emma and Alma working together.
+YOU: Reaaaally? What makes you say that?
+OMAR: Two things. Well three things. 
+OMAR: First, you're forcing me to choose a theory.
+YOU: Well, that.. doesn't really sound like a reaon.
+OMAR: Interesting that you would say that. 
+YOU: Aaaanyway. You had two more reasons.
+OMAR: Their names. They're too similar.
+OMAR: I never trust two people who's names are the same. Or very close.
+YOU: Em-ma. Al-ma. Doesn't sound *too* similar to me.
+OMAR: similar enough to be suspcious.
+YOU: And the last reason.
+OMAR: I saw them, last night. 
+YOU: Interesting. Emma never mentioned anything about that!
+YOU: Where?
+OMAR: In the parlor. I didn't hear what they were saying, 
+OMAR: but they way they were together was... suspcious. 
+YOU: That's very interesting. And when was this?
+OMAR: I don't remember exactly. Around 9 pm I believe.
+YOU: Thank you Omar. That could be the detail that cracks this whole case wide open. 
+OMAR: Now will you *please* leave me alone.
+YOU: Well, I don't have anything more to say about this specific topic at least. 

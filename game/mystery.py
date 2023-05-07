@@ -140,6 +140,12 @@ glass_ceiling = Item(
     portable= True
 )
 
+smelling_salts = Item(
+    name = "Smelling salts",
+    description= open("docs/debugging.txt"),
+    portable=TRUE
+)
+
 #Cellar items
 drink = Item(
     name = "A bottle of alcohol",
@@ -147,6 +153,11 @@ drink = Item(
     portable= TRUE
 )
 
+saluric_acid_clue = Item(
+    name = "Celar slack printout",
+    description= open("docs/debugging.txt"),
+    portable= TRUE
+)
 
 # When implementing dialogue, it's important to make it in then
 # format Menu("title", ["question", "answer"], ["back", "placeholder"])
@@ -399,7 +410,7 @@ Orangery = Room(
     revisit= open("docs/orangery_revisit.txt"),
     description= open("docs/orangery_description.txt"),
     character= Brothers_Mook,
-    clues = [glass_ceiling, leftovers],
+    clues = [glass_ceiling, leftovers, smelling_salts],
     n_clues= 2,
     investigation_menu= Menu(
         "Withering the suspicious glares of the brothers Mook, you try to discretely investigate the orangery", [
