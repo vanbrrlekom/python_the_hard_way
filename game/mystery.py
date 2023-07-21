@@ -196,8 +196,6 @@ class Character(object):
             print("Come on wiseguy. You know the drill. It's numbers. That's what I want to see. None of this \"not numbers\" business")
             input("Return to main menu.")
         
-    
-            
 
 Emma_Atalle = Character(
     name = "Emma Atalle",
@@ -230,18 +228,18 @@ Emma_Atalle_2 = Character(
         ("It was me, I killed him in the end", 2),
         ("Back", "Back *has* been implemented, so if this message comes up, somethings's gone wrong")]
     ),
-    dialogue_opts= [open("docs/emma_dialogue1.txt"), open("docs/emma_dialogue2.txt"), open("docs/emma_dialogue3.txt")],
-    n_dialgue_opts = 3,
-    key_item = Letter,
+    dialogue_opts= [open("docs/emma2_dialogue1.txt"), open("docs/emma2_dialogue2.txt"), open("docs/emma_dialogue3.txt")],
+    n_dialgue_opts = 5,
+    key_item = smelling_salts,
     wrong_item_dialogue = "EMMA: Oh dear. Please stop waving that around, someone could get hurt.",
     key_item_dialogue = open("docs/debugging.txt"),#open("emma_key_item_dialogue.txt"),
-    key_item_outcome = "Unlock",
+    key_item_outcome = 4,
     disaster_dialogue= open("docs/debugging.txt")
 
 )
 
 Doctor_Innocente = Character(
-    name = "Alma Innocent",
+    name = "Alma Innocent", 
     description = "In the room, you see a fidgeting man in a lab coat and a stethoscope around his neck\n \n",
     dialogue= Menu(
         "What do you talk about?" , [
@@ -255,7 +253,7 @@ Doctor_Innocente = Character(
     key_item= glass_shards,
     key_item_dialogue= open("docs/debugging.txt"),
     wrong_item_dialogue= open("docs/alma_wrong_item_dialogue.txt"),
-    key_item_outcome= "Unlock library",
+    key_item_outcome= 3,
     disaster_dialogue= open("docs/debugging.txt")
 )
 
@@ -283,15 +281,16 @@ Omar = Character(
     dialogue = Menu("Omar cooly sips from his glass, eyeing you evenly. What do you ask him?",[
                     ("Last night", 1),
                     ("Link to the victim", 2),
-                    ("Theories", 1)
+                    ("Theories", 1),
+                    ("Back", 2)
     ]),
     dialogue_opts= [open("docs/omar_dialogue1.txt"), open("docs/omar_dialogue2.txt"), open("docs/omar_dialogue3.txt")],
     n_dialgue_opts= 3,
     key_item= mean_tweets,
-    wrong_item_dialogue= open("docs/omar_wrong_iten_dialogue.txt"),
+    wrong_item_dialogue= open("docs/omar_wrong_item_dialogue.txt"),
     key_item_dialogue= open("docs/debugging.txt"),
     disaster_dialogue= open("docs/debugging.txt"),
-    key_item_outcome= "Unlock"
+    key_item_outcome= 3
 )
 
 class Room(object):
@@ -371,12 +370,13 @@ Library = Room(
     revisit= open("docs/debugging.txt"),
     description = open("docs/debugging.txt"),
     character= Emma_Atalle,
-    clues = [Library_book, Knife, Letter, book, brochure],
-    n_clues= 1,
+    clues = [Knife, Letter, key, glass_shards, book, brochure, fireplace],
+    n_clues = 5,
     investigation_menu = Menu(
             "You look around and the following items stand out to you:", [
                 ("The knife buried in the body", 1),
-                ("The rest of the body", 2),
+                ("The rest of the body",2),
+                ("A strange glint by the fireplace", 3),
                 ("A key sitting on a shelf", 3),
                 ("A book sitting loose in the shelf", 3),
                 ("The fireplace", 4),
@@ -473,10 +473,20 @@ class Engine(object):
     def add_mean_tweets(self):
         Inventory.append(mean_tweets)
 
+    def no_effect():
+        pass
+
+    def teleport_to_lobby(self):
+        self.room = lobby
+        slowprint(self.room.description)
+
+
     def get_outcomes(self, input):
         outcomes = [
             self.room.turn_lock,
-            self.add_mean_tweets
+            self.add_mean_tweets,
+            self.no_effect, 
+            self.quit
         ]
         action = outcomes[input -1]()
 

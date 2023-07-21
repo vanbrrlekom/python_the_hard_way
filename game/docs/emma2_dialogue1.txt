@@ -1,1 +1,35 @@
-emma2_dialogue1.txt
+EMMA: So, you've decided it was Omar who did it in the end, have you?
+YOU: Yup.
+EMMA: And you're sure about that?
+YOU: Sure as anything. 
+EMMA: Okay, walk me through this.
+EMMA: Why do you think Omar did it.
+YOU: Well, he's a dirty liar, that's for one.
+YOU: I'm sure he lied about everything. 
+EMMA: I see...
+YOU: Specifically, about how Silas didn't give him money.
+YOU: The two of them were NOT getting along. 
+EMMA: And you think it was bad enough that Omar wanted to kill over it?
+YOU: I don't think it. I know it!
+EMMA: Okay. But how!
+YOU: That's easy. He had no Alibi. He admitted it himself!
+EMMA: Not quite what I was asking.
+EMMA: You still haven't accounted for the locked door.
+YOU: Loocked doork, locked shmoor. 
+YOU: If there is a spare key, it would have been easy.
+EMMA: The key was in the room the whole time. 
+EMMA: And there was no spare key!
+YOU: Hmm...
+YOU: Eh, who knows what keys are!
+EMMA: Okay. Well, if you're convinced...
+YOU: There's no unconvincing me!
+Indeed. If you're satisfied with your answer, who am I,
+the maker of the game, to tell you that you're wrong.
+Yet, in your heart, you have this feeling...
+Like,
+maybe there is something you've missed. 
+Some clue...
+... or combination of clues.
+But nah, you can probably live with that.
+...
+Right?
